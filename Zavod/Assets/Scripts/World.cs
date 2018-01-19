@@ -1,4 +1,5 @@
-﻿using System.Collections;
+/*Здесь был Я #КОСТЫЛЬGAMING!*/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
