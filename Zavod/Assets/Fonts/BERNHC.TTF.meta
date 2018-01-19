@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: a8000256e6780bb4fba30d0e1fb73fdc
+timeCreated: 1508764224
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bernard MT Condensed
+  fontNames:
+  - Bernard MT Condensed
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

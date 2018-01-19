@@ -1,0 +1,664 @@
+fileFormatVersion: 2
+guid: c3a6fc14e20d7b047809ae204d8b1d65
+timeCreated: 1516200269
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Soldier_0
+    21300002: Soldier_1
+    21300004: Soldier_2
+    21300006: Soldier_3
+    21300008: Soldier_4
+    21300010: Soldier_5
+    21300012: Soldier_6
+    21300014: Soldier_7
+    21300016: Soldier_8
+    21300018: Soldier_9
+    21300020: Soldier_10
+    21300022: Soldier_11
+    21300024: Soldier_12
+    21300026: Soldier_13
+    21300028: Soldier_14
+    21300030: Soldier_15
+    21300032: Soldier_16
+    21300034: Soldier_17
+    21300036: Soldier_18
+    21300038: Soldier_19
+    21300040: Soldier_20
+    21300042: Soldier_21
+    21300044: Soldier_22
+    21300046: Soldier_23
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Soldier_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 321.28
+        width: 152.40779
+        height: 173.72
+      alignment: 9
+      pivot: {x: 0.55351377, y: 0.089777574}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 49.5, y: 86.86}
+        - {x: -49.5, y: 86.86}
+        - {x: -76.203896, y: 62.28}
+        - {x: -76.203896, y: -55.72}
+        - {x: -69.5, y: -82.72}
+        - {x: 32.5, y: -82.72}
+        - {x: 68.5, y: -63.72}
+        - {x: 72.5, y: -29.720001}
+        - {x: 72.5, y: 51.28}
+      - - {x: 28.5, y: -76.72}
+        - {x: 26.5, y: -78.72}
+        - {x: 26.5, y: -80.72}
+        - {x: 28.5, y: -82.72}
+        - {x: 34.5, y: -82.72}
+        - {x: 36.5, y: -80.72}
+        - {x: 36.5, y: -78.72}
+        - {x: 34.5, y: -76.72}
+      - - {x: 59.5, y: -58.72}
+        - {x: 58.5, y: -60.72}
+        - {x: 58.5, y: -63.72}
+        - {x: 60.5, y: -64.72}
+        - {x: 64.5, y: -64.72}
+        - {x: 65.5, y: -62.72}
+        - {x: 65.5, y: -59.72}
+        - {x: 63.5, y: -58.72}
+      - - {x: 72.5, y: -49.72}
+        - {x: 73.5, y: -52.72}
+        - {x: 76.203896, y: -52.72}
+        - {x: 76.203896, y: -47.72}
+        - {x: 74.5, y: -47.72}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_1
+      rect:
+        serializedVersion: 2
+        x: 167.54819
+        y: 320
+        width: 157.5853
+        height: 175
+      alignment: 9
+      pivot: {x: 0.5627794, y: 0.10514648}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 78.79265, y: 19.5}
+        - {x: 78.79265, y: 20.5}
+        - {x: 78.79265, y: 47.5}
+        - {x: 52.048187, y: 87.5}
+        - {x: -36.951813, y: 87.5}
+        - {x: -74.95181, y: 64.5}
+        - {x: -74.95181, y: -45.5}
+        - {x: -42.951813, y: -84.5}
+        - {x: 16.048187, y: -84.5}
+        - {x: 62.048187, y: -72.5}
+        - {x: 78.79265, y: -18.5}
+        - {x: 78.79265, y: 19.5}
+      - - {x: -49.951813, y: -50.5}
+        - {x: -46.951813, y: -49.5}
+        - {x: -46.951813, y: -46.5}
+        - {x: -49.951813, y: -45.5}
+        - {x: -51.951813, y: -47.5}
+      - - {x: -75.95181, y: -42.5}
+        - {x: -75.95181, y: -48.5}
+        - {x: -58.951813, y: -48.5}
+        - {x: -58.951813, y: -42.5}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_2
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 413
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.893219, y: 2.4681091}
+        - {x: -9.941895, y: -3.2471619}
+        - {x: -8.701294, y: -3.9823914}
+        - {x: 0.02468872, y: -4.026184}
+        - {x: 4.0503845, y: -4.0973816}
+        - {x: 8.601257, y: -0.3416443}
+        - {x: 3.6608887, y: 3.8052368}
+        - {x: -8.245728, y: 3.928833}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_3
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 406
+        width: 58
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 11}
+        - {x: -29, y: 7}
+        - {x: -29, y: -3}
+        - {x: -21, y: -11}
+        - {x: 29, y: -11}
+        - {x: 29, y: 3}
+        - {x: 14, y: 11}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_4
+      rect:
+        serializedVersion: 2
+        x: 516.5
+        y: 403.6
+        width: 58.5
+        height: 28.950012
+      alignment: 9
+      pivot: {x: 0.49572653, y: 0.4974089}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 12.600006}
+        - {x: -27, y: 3.600006}
+        - {x: -27, y: -5.399994}
+        - {x: -19, y: -10.399994}
+        - {x: -16, y: -11.399994}
+        - {x: 13, y: -11.399994}
+        - {x: 28, y: -5.399994}
+        - {x: 28, y: 9.600006}
+        - {x: 16, y: 12.600006}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_5
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 405
+        width: 56
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 24, y: 11.5}
+        - {x: -20, y: 11.5}
+        - {x: -28, y: 6.5}
+        - {x: -28, y: -4.5}
+        - {x: -24, y: -5.5}
+        - {x: -15, y: -12.5}
+        - {x: 4, y: -12.5}
+        - {x: 20, y: -10.5}
+        - {x: 28, y: -8.5}
+        - {x: 28, y: 10.5}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_6
+      rect:
+        serializedVersion: 2
+        x: 507.52704
+        y: 298.7835
+        width: 36.830383
+        height: 26.194855
+      alignment: 9
+      pivot: {x: 0.5015685, y: 0.48545763}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.472961, y: 12.283508}
+        - {x: -16.472961, y: 8.283508}
+        - {x: -16.472961, y: -9.716492}
+        - {x: -9.472961, y: -12.716492}
+        - {x: 10.527039, y: -12.716492}
+        - {x: 18.415192, y: -4.7164917}
+        - {x: 18.415192, y: 11.283508}
+        - {x: 13.527039, y: 12.283508}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_8
+      rect:
+        serializedVersion: 2
+        x: 610.6559
+        y: 186.981
+        width: 44.82367
+        height: 84.03795
+      alignment: 9
+      pivot: {x: 0.50999403, y: 0.85748047}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.344116, y: 41.981003}
+        - {x: -18.344116, y: 34.981003}
+        - {x: -18.344116, y: -6.018997}
+        - {x: -12.344116, y: -39.018997}
+        - {x: 9.655884, y: -39.018997}
+        - {x: 20.655884, y: -11.018997}
+        - {x: 20.655884, y: 23.981003}
+        - {x: 11.655884, y: 41.981003}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_9
+      rect:
+        serializedVersion: 2
+        x: 36.51567
+        y: 98.234436
+        width: 43.96869
+        height: 85.429596
+      alignment: 9
+      pivot: {x: 0.47160497, y: 0.7931469}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21.984344, y: 38.234436}
+        - {x: 13.015671, y: 40.234436}
+        - {x: -13.984329, y: 40.234436}
+        - {x: -18.98433, y: 16.234436}
+        - {x: -18.98433, y: -23.765564}
+        - {x: -14.984329, y: -41.765564}
+        - {x: -2.9843292, y: -41.765564}
+        - {x: 0.015670776, y: -40.765564}
+        - {x: 4.015671, y: -36.765564}
+        - {x: 7.015671, y: -30.765564}
+        - {x: 21.984344, y: 0.23443604}
+      - - {x: -21.98433, y: -20.765564}
+        - {x: -21.98433, y: -26.765564}
+        - {x: -19.98433, y: -26.765564}
+        - {x: -17.98433, y: -24.765564}
+        - {x: -17.98433, y: -22.765564}
+        - {x: -19.98433, y: -20.765564}
+      - - {x: -18.98433, y: -15.765564}
+        - {x: -15.984329, y: -15.765564}
+        - {x: -15.984329, y: -6.765564}
+        - {x: -16.98433, y: -0.76556396}
+        - {x: -21.98433, y: -0.76556396}
+        - {x: -21.98433, y: -13.765564}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_10
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 189.89658
+        width: 201.87326
+        height: 79.75354
+      alignment: 9
+      pivot: {x: 0.3727291, y: 0.4448435}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -98, y: -26.603424}
+        - {x: -70, y: -36.603424}
+        - {x: 32, y: -36.603424}
+        - {x: 99, y: -2.603424}
+        - {x: 99, y: 19.396576}
+        - {x: 92, y: 32.396576}
+        - {x: 54, y: 38.396576}
+        - {x: -39, y: 38.396576}
+        - {x: -98, y: 25.396576}
+      - - {x: -27, y: -3.603424}
+        - {x: -24, y: -6.603424}
+        - {x: -23, y: -5.603424}
+        - {x: -26, y: -4.603424}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_12
+      rect:
+        serializedVersion: 2
+        x: 312.82455
+        y: 112.58917
+        width: 47.644745
+        height: 73.58629
+      alignment: 9
+      pivot: {x: 1.2623852, y: 0.89243805}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.675446, y: 35.089172}
+        - {x: -11.675446, y: 34.089172}
+        - {x: -19.675446, y: 21.089172}
+        - {x: -20.675446, y: 19.089172}
+        - {x: -20.675446, y: -17.910828}
+        - {x: -19.675446, y: -27.910828}
+        - {x: -11.675446, y: -33.910828}
+        - {x: 9.324554, y: -33.910828}
+        - {x: 23.324554, y: -10.910828}
+        - {x: 23.324554, y: 27.089172}
+        - {x: 18.324554, y: 35.089172}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_13
+      rect:
+        serializedVersion: 2
+        x: 362.90906
+        y: 113.42244
+        width: 47.756622
+        height: 74.01071
+      alignment: 9
+      pivot: {x: -0.2362781, y: 0.8277654}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.590942, y: 34.92244}
+        - {x: -20.590942, y: 24.92244}
+        - {x: -20.590942, y: -25.07756}
+        - {x: -14.590942, y: -35.07756}
+        - {x: 14.409058, y: -35.07756}
+        - {x: 23.409058, y: -32.07756}
+        - {x: 23.409058, y: 24.92244}
+        - {x: 14.409058, y: 34.92244}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_14
+      rect:
+        serializedVersion: 2
+        x: 493.05045
+        y: 170.83502
+        width: 82.329926
+        height: 99.59592
+      alignment: 9
+      pivot: {x: 0.4820399, y: 0.1518972}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31.449554, y: 49.79796}
+        - {x: -38.449554, y: 35.335022}
+        - {x: -38.449554, y: -46.664978}
+        - {x: 21.550446, y: -46.664978}
+        - {x: 28.550446, y: -45.664978}
+        - {x: 38.550446, y: -35.664978}
+        - {x: 38.550446, y: 49.79796}
+      - - {x: -34.449554, y: 30.335022}
+        - {x: -31.449554, y: 31.335022}
+        - {x: -31.449554, y: 34.335022}
+        - {x: -34.449554, y: 35.335022}
+        - {x: -36.449554, y: 33.335022}
+      - - {x: -24.449554, y: 44.335022}
+        - {x: -21.449554, y: 45.335022}
+        - {x: -21.449554, y: 48.335022}
+        - {x: -24.449554, y: 49.335022}
+        - {x: -26.449554, y: 47.335022}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_15
+      rect:
+        serializedVersion: 2
+        x: 626.8191
+        y: 131.37639
+        width: 25.69812
+        height: 57.44844
+      alignment: 9
+      pivot: {x: 0.43047658, y: 0.8743858}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.6809082, y: 27.376389}
+        - {x: -9.680908, y: 25.376389}
+        - {x: -9.680908, y: -24.623611}
+        - {x: -4.680908, y: -28.623611}
+        - {x: 11.319092, y: -28.623611}
+        - {x: 12.319092, y: -21.623611}
+        - {x: 12.319092, y: 18.376389}
+        - {x: 6.319092, y: 27.376389}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_16
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 50
+        width: 16
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 55}
+        - {x: -8, y: 51}
+        - {x: -8, y: -54}
+        - {x: -7, y: -55}
+        - {x: 8, y: -55}
+        - {x: 8, y: 55}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_17
+      rect:
+        serializedVersion: 2
+        x: 496.49646
+        y: 119.59114
+        width: 81.31915
+        height: 40.5186
+      alignment: 9
+      pivot: {x: 0.49501964, y: 0.38695887}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32.49646, y: 18.59114}
+        - {x: -33.50354, y: 18.59114}
+        - {x: -36.50354, y: 12.591141}
+        - {x: -37.50354, y: 7.5911407}
+        - {x: -37.50354, y: -10.408859}
+        - {x: -22.50354, y: -17.40886}
+        - {x: 19.49646, y: -17.40886}
+        - {x: 30.49646, y: -15.408859}
+        - {x: 38.49646, y: -8.408859}
+        - {x: 38.49646, y: 2.5911407}
+        - {x: 35.49646, y: 16.59114}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_18
+      rect:
+        serializedVersion: 2
+        x: 623.49445
+        y: 99.19288
+        width: 35.68634
+        height: 36.62966
+      alignment: 9
+      pivot: {x: 0.4847841, y: 0.84484714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9.994446, y: 18.31483}
+        - {x: -9.005554, y: 18.31483}
+        - {x: -16.005554, y: 13.692879}
+        - {x: -16.005554, y: -13.307121}
+        - {x: -13.005554, y: -16.307121}
+        - {x: 5.994446, y: -16.307121}
+        - {x: 8.994446, y: -14.307121}
+        - {x: 16.994446, y: -7.3071213}
+        - {x: 16.994446, y: 8.692879}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_19
+      rect:
+        serializedVersion: 2
+        x: 41.630447
+        y: 43.76245
+        width: 27.165154
+        height: 58.040047
+      alignment: 9
+      pivot: {x: 0.46630433, y: 0.86800987}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.369553, y: 28.262451}
+        - {x: -10.369553, y: 21.262451}
+        - {x: -10.369553, y: -18.737549}
+        - {x: -3.3695526, y: -28.737549}
+        - {x: 9.630447, y: -28.737549}
+        - {x: 12.630447, y: -16.737549}
+        - {x: 12.630447, y: -1.7375488}
+        - {x: 8.630447, y: 28.262451}
+      - - {x: -6.3695526, y: 28.262451}
+        - {x: -6.3695526, y: 29.020023}
+        - {x: -11.369553, y: 29.020023}
+        - {x: -9.369553, y: 27.262451}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_20
+      rect:
+        serializedVersion: 2
+        x: 306.2681
+        y: 24.761318
+        width: 56.36389
+        height: 84.51965
+      alignment: 9
+      pivot: {x: 0.9700314, y: 0.95438755}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.231903, y: 40.76132}
+        - {x: -26.231903, y: 27.761318}
+        - {x: -26.231903, y: -40.23868}
+        - {x: 26.768097, y: -40.23868}
+        - {x: 26.768097, y: -18.238682}
+        - {x: 11.768097, y: 40.76132}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_21
+      rect:
+        serializedVersion: 2
+        x: 363.8857
+        y: 25.925774
+        width: 55.884766
+        height: 83.813866
+      alignment: 9
+      pivot: {x: -0.11795829, y: 0.97061706}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.614288, y: 41.425774}
+        - {x: -12.614288, y: 39.425774}
+        - {x: -23.614288, y: 27.425774}
+        - {x: -25.614288, y: 15.425774}
+        - {x: -25.614288, y: -39.574226}
+        - {x: 27.385712, y: -39.574226}
+        - {x: 27.385712, y: 2.4257736}
+        - {x: 10.385712, y: 41.425774}
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Soldier_22
+      rect:
+        serializedVersion: 2
+        x: 35.958225
+        y: 11.862265
+        width: 37.766064
+        height: 36.66249
+      alignment: 9
+      pivot: {x: 0.50420344, y: 0.8403848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5.5417747, y: 18.331245}
+        - {x: -15.541775, y: -3.1377354}
+        - {x: -15.541775, y: -12.137735}
+        - {x: -12.541775, y: -15.137735}
+        - {x: 8.458225, y: -15.137735}
+        - {x: 14.458225, y: -14.137735}
+        - {x: 18.458225, y: -10.137735}
+        - {x: 18.458225, y: 7.8622646}
+        - {x: 11.458225, y: 18.331245}
+      - - {x: 15.458225, y: -8.137735}
+        - {x: 15.458225, y: -12.137735}
+        - {x: 16.458225, y: -14.137735}
+        - {x: 18.458225, y: -14.137735}
+        - {x: 18.883032, y: -12.137735}
+        - {x: 18.883032, y: -4.1377354}
+        - {x: 17.458225, y: -5.1377354}
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 99361881391801
+  assetBundleName: 
+  assetBundleVariant: 
