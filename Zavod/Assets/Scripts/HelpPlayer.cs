@@ -9,8 +9,10 @@ public class HelpPlayer : MonoBehaviour {
     public int energy = 100;
     public int health = 100;
     public int damage = 3;
-    public RectTransform barHp;
-    public RectTransform barEn;
+  
+    [SerializeField]
+    private RectTransform barHp, barEn;
+    
     bool fullEn = true;
     bool corotin = true;
 
@@ -38,7 +40,7 @@ public class HelpPlayer : MonoBehaviour {
         barEn.offsetMax = new Vector2(value, 0f);
     }
 
-    void AttackDamage(GameObject enemy)
+    public void AttackDamage(GameObject enemy)
     {
         enemy.GetComponent<Enemy>().hp = Mathf.Clamp(enemy.GetComponent<Enemy>().hp - damage, 0, enemy.GetComponent<Enemy>().maxhp);
     }
@@ -59,10 +61,7 @@ public class HelpPlayer : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(2))
-        {
-            HpAdd(-10);
-        }
+
     }
 
     IEnumerator plusEnergy()
@@ -96,24 +95,17 @@ public class HelpPlayer : MonoBehaviour {
         }        
     }
 
+    
+
+
     IEnumerator timer() {
         yield return new WaitForSeconds(0.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 10)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                AttackDamage(collision.gameObject);
-                collision.gameObject.GetComponent<Animator>().Play("");
-            }
-        }
+    {     
         if (collision.tag == "takeDamage")
-        {   Vector2 force = new Vector2(collision.transform.localScale.x*4, 1f);
-            GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
-            Destroy(collision.gameObject);
+        {   Destroy(collision.gameObject);
             GetComponent<Animator>().Play("RobotDamage");
             HpAdd(-5);
         }

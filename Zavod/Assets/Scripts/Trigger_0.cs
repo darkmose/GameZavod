@@ -25,7 +25,6 @@ public class Trigger_0 : MonoBehaviour
 
                 scrpt.items.Add(collision.collider.gameObject.GetComponent<Item>());
                 Destroy(collision.collider.gameObject);
-                Debug.Log(count);
             }
             else ignore = true;
         }

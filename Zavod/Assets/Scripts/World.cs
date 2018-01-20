@@ -20,11 +20,12 @@ public class World : MonoBehaviour {
 
 
     void Start () {
-    StartCoroutine("BirdInst");
+        StartCoroutine("BirdInst");
         Physics2D.IgnoreLayerCollision(10, 10, true);
         Physics2D.IgnoreLayerCollision(10, 11, true);
         Physics2D.IgnoreLayerCollision(10, 8, true);
-        StartCoroutine(InvasionEvent());
+        Physics2D.IgnoreLayerCollision(11, 8, true);
+        // StartCoroutine(InvasionEvent());
     }
 
     IEnumerator InvasionEvent() {
@@ -32,8 +33,7 @@ public class World : MonoBehaviour {
         {
             GameObject.Find("Vertolety").GetComponent<Animator>().SetBool("invasion", true);
             yield return new WaitForSeconds(5);
-            int k = Random.Range(1, 5);
-            Debug.Log(k);
+            int k = Random.Range(1, 3);
             for (int i = 0; i < k; i++)
             {
                 SoldierInst();
@@ -79,13 +79,13 @@ public class World : MonoBehaviour {
     void SoldierInst()
     {
         Vector2 pos = spawn1.position;
-        GameObject sold = Instantiate(solduer,pos,Quaternion.identity);
+        GameObject sold = Instantiate(solduer,pos,Quaternion.identity,GameObject.Find("Enemies").transform);
         bool j = false;
         
         StartCoroutine(timer(Random.Range(1,5), j));
             StartCoroutine(soldier(sold));//1 
         pos = spawn2.position;
-        sold = Instantiate(solduer, pos, Quaternion.identity);
+        sold = Instantiate(solduer, pos, Quaternion.identity, GameObject.Find("Enemies").transform);
         j = false;
         StartCoroutine(timer(Random.Range(1, 5), j));
             StartCoroutine(soldier(sold));//2       

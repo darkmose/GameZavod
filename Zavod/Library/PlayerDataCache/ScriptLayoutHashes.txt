@@ -113,6 +113,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 5a64defe18eb0abbd5fc9c695efb1d4a Assembly-CSharp.dll:.Item
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FlyHelp
 322cb40e1e282f28af980cbef7922a90 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
@@ -120,7 +121,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-c7ae52bc112fea31e22596423706d4c0 Assembly-CSharp.dll:.World
+a301fd783d1b38fc9236c4e07406caac Assembly-CSharp.dll:.World
 0b4ec67bf00d8c3da2ac764b6051f765 Assembly-CSharp.dll:.HelpPlayer
 eced8c8958fc8778d1b8604e9122d164 Assembly-CSharp.dll:Anima2D.IkLimb2D
 bb21ecf26db1f02f72231857956971b6 Assembly-CSharp.dll:Anima2D.SpriteMesh
@@ -165,7 +166,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 1bd73dc08780414ea7c06375d2fbc18e Assembly-CSharp.dll:UnityChan.SpringCollider
 e1038aa7f4b50abdc53c0f0508bd8b17 Assembly-CSharp.dll:Anima2D.IkGroup
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Enemy
+6eac956c6ef7e63a0b9fb4c6fc49440f Assembly-CSharp.dll:.Enemy
 29722f69a3861fee4a351b045eadda79 Assembly-CSharp.dll:.MenuButton
 01439f69ab23783ab7af2cce00890849 Assembly-CSharp.dll:Anima2D.Pose
 7d3bde46808734d3ff460282d88c9f6e Assembly-CSharp.dll:Anima2D.PoseManager
@@ -174,4 +175,5 @@ db3b233e35a88802fed1717d19c3d9ec Assembly-CSharp.dll:.Follow
 9a6ce7dad7e8aee4b6fc16d50385a21b Assembly-CSharp.dll:Anima2D.IkCCD2D
 0e3d09c9ec595aecd6171fee3214f482 Assembly-CSharp.dll:.InvButtons
 a8e482df6d69222c2ca475ef90a9561e Assembly-CSharp.dll:.SkinnedMeshCombiner
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FlyHelp
+0b4ec67bf00d8c3da2ac764b6051f765 Assembly-CSharp.dll:.Player2
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CoinsMove

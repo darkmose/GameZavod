@@ -90,6 +90,24 @@ public class Enemy : MonoBehaviour {
 
     }
 
+    IEnumerator coins(int col) {
+        for (int i = 0; i < col; i++)
+        {
+            Vector2 pos = transform.position;
+            GameObject newCoin = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/CoinItem"),pos,Quaternion.identity,GameObject.Find("Coins").transform);
+            newCoin.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-3f, 3f), 7f),ForceMode2D.Impulse);
+            yield return null;
+        }
+    }
+
+    void Die() {       
+            
+            Destroy(gameObject);       
+    }
+    void Money() {
+        int k = Random.Range(5, 10);
+        StartCoroutine(coins(k));
+    }
 
     private void FixedUpdate()
     {
@@ -99,6 +117,11 @@ public class Enemy : MonoBehaviour {
         }
         else spritemesh.spriteMesh = face1;
         ToPlayer();
+        if (hp==0)
+        {
+            GetComponent<Animator>().Play("EnemyDie");
+            
+        }
     }
 
   
