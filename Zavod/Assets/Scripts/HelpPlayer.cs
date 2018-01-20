@@ -38,6 +38,11 @@ public class HelpPlayer : MonoBehaviour {
         barEn.offsetMax = new Vector2(value, 0f);
     }
 
+    void AttackDamage(GameObject enemy)
+    {
+        enemy.GetComponent<Enemy>().hp = Mathf.Clamp(enemy.GetComponent<Enemy>().hp - damage, 0, enemy.GetComponent<Enemy>().maxhp);
+    }
+
 
     void EnergyAdd(int count)
     {
@@ -91,15 +96,26 @@ public class HelpPlayer : MonoBehaviour {
         }        
     }
 
-
+    IEnumerator timer() {
+        yield return new WaitForSeconds(0.5f);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "takeDamage")
+        if (collision.gameObject.layer == 10)
         {
-            Debug.Log("Hit!");
-            collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder = -600;
-            HpAdd(-10);
+            if (Input.GetMouseButtonDown(0))
+            {
+                AttackDamage(collision.gameObject);
+                collision.gameObject.GetComponent<Animator>().Play("");
+            }
+        }
+        if (collision.tag == "takeDamage")
+        {   Vector2 force = new Vector2(collision.transform.localScale.x*4, 1f);
+            GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+            Destroy(collision.gameObject);
+            GetComponent<Animator>().Play("RobotDamage");
+            HpAdd(-5);
         }
     }
 }

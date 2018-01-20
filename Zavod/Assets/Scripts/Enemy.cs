@@ -7,36 +7,58 @@ public class Enemy : MonoBehaviour {
     Animator animator;
     public SpriteMesh face1, face2;
     public SpriteMeshInstance spritemesh;
-    public int hp;
+    public int maxhp = 100;
+    public int hp=100;
     public GameObject bullet;
     public Vector2 startPos;
     public Transform rifle;
     public GameObject player;
 
 
+
     public IEnumerator bulFly(GameObject bul, float scale)
-    {
-        Vector2 target = startPos;
+    {   Vector2 target = startPos;
         target.x = player.transform.position.x+(50*scale);
 
-            if (scale > 0)
+         if (scale > 0)
+         {
+            float x = bul.transform.position.x;
+            for (; x <= startPos.x + 15;)
             {
-                for (; bul.transform.position.x <= startPos.x + 50;)
+                try
                 {
                     bul.transform.position = Vector2.MoveTowards(bul.transform.position, target, Time.deltaTime * 5);
-                    yield return null;
+                    x = bul.transform.position.x;
                 }
-                Destroy(bul);
+                catch (MissingReferenceException exc)
+                {
+                    Debug.Log(exc.Message);
+                    break;
+                }
+                yield return null;
             }
-            if (scale < 0)
+                                      
+         }
+         else if (scale < 0)
+         {
+            float x = bul.transform.position.x;
+            for (; x >= startPos.x - 15;)
             {
-                for (; bul.transform.position.x >= startPos.x - 50;)
+                try
                 {
                     bul.transform.position = Vector2.MoveTowards(bul.transform.position, target, Time.deltaTime * 5);
-                    yield return null;
+                    x = bul.transform.position.x;
                 }
-                Destroy(bul);
-            }        
+                catch (MissingReferenceException exc)
+                {
+                    Debug.Log(exc.Message);
+                    break;
+                }
+                yield return null;
+            }
+        }
+
+
     }
 
     void Start()
@@ -65,16 +87,6 @@ public class Enemy : MonoBehaviour {
             transform.localScale = new Vector2(-1, 1);
         }
         else transform.localScale = new Vector2(1, 1);
-
-    }
-
-
-    
-
-
-
-
-    void Update() {
 
     }
 

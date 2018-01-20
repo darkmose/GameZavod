@@ -15,6 +15,7 @@ public class CameraScript : MonoBehaviour {
 
    
         Camera camera = GetComponent<Camera>();
+        
 
      
         if (scaleheight < 1.0f)

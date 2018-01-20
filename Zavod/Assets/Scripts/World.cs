@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Anima2D;
 
 public class World : MonoBehaviour {
     public float birdSpeed = 10f;
@@ -13,9 +14,9 @@ public class World : MonoBehaviour {
     //float size;
     public Transform spawn1, spawn2;
     public GameObject solduer;
-    public float speedSoldier = 7f;
+    public float speedSoldier = 5f;
     
-    public int firetime = 4; 
+    public int firetime = 3; 
 
 
     void Start () {
@@ -30,17 +31,16 @@ public class World : MonoBehaviour {
         while (true)
         {
             GameObject.Find("Vertolety").GetComponent<Animator>().SetBool("invasion", true);
-            //yield return new WaitForSeconds(3);
-            Debug.Log("INVASION!!!!!!!!");
+            yield return new WaitForSeconds(5);
             int k = Random.Range(1, 5);
             Debug.Log(k);
             for (int i = 0; i < k; i++)
             {
                 SoldierInst();
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(3);
             }
             GameObject.Find("Vertolety").GetComponent<Animator>().SetBool("invasion", false);
-            yield return new WaitForSeconds(70);
+            yield return new WaitForSeconds(500);
         }
     }
     
@@ -81,25 +81,14 @@ public class World : MonoBehaviour {
         Vector2 pos = spawn1.position;
         GameObject sold = Instantiate(solduer,pos,Quaternion.identity);
         bool j = false;
-        StartCoroutine(timer(2, j));
-    kek:
-        if (true)
-        {
+        
+        StartCoroutine(timer(Random.Range(1,5), j));
             StartCoroutine(soldier(sold));//1 
-        }
-        else goto kek;
-
         pos = spawn2.position;
         sold = Instantiate(solduer, pos, Quaternion.identity);
         j = false;
-        StartCoroutine(timer(2,j));
-    lol:
-        if (true)
-        {
-            StartCoroutine(soldier(sold));//2
-        }
-        else goto lol;     
-        
+        StartCoroutine(timer(Random.Range(1, 5), j));
+            StartCoroutine(soldier(sold));//2       
     }
 
     IEnumerator timer(int col,bool j) {
@@ -120,21 +109,46 @@ public class World : MonoBehaviour {
                 Destroy(sold);
                 yield break;
             }
-            if (sold.transform.position.x < (GameObject.Find("Player").transform.position.x + (Screen.width / 2) - 4) * -sold.transform.localScale.x)
+            else if (sold.transform.localScale.x > 0)
             {
-                sold.GetComponent<Animator>().SetInteger("Do", 2);
-                target.x = GameObject.Find("Player").transform.position.x;
-                sold.transform.position = Vector2.MoveTowards(sold.transform.position, target, Time.deltaTime * speedSoldier);
-                yield return null;
-            }
-            else
-            {
-                for (int i = 0; i < 5; i++)
+                if (sold.transform.position.x < (GameObject.Find("Player").transform.position.x + 10 * -sold.transform.localScale.x))
                 {
-                    sold.GetComponent<Animator>().SetInteger("Do", 1);
+                    sold.GetComponent<Animator>().SetInteger("Do", 2);
+                    target.x = GameObject.Find("Player").transform.position.x;
+                    sold.transform.position = Vector2.MoveTowards(sold.transform.position, target, Time.deltaTime * speedSoldier);
+                    yield return null;
                 }
-                yield return new WaitForSeconds(firetime);                
-            }            
+                else
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        sold.GetComponent<Animator>().SetInteger("Do", 1);
+                    }
+                    yield return new WaitForSeconds(firetime);
+                }
+
+            }
+            else if (sold.transform.localScale.x < 0)
+            {
+                if (sold.transform.position.x > (GameObject.Find("Player").transform.position.x + 10* -sold.transform.localScale.x))
+                {
+                    sold.GetComponent<Animator>().SetInteger("Do", 2);
+                    target.x = GameObject.Find("Player").transform.position.x;
+                    sold.transform.position = Vector2.MoveTowards(sold.transform.position, target, Time.deltaTime * speedSoldier);
+                    yield return null;
+                }
+                else
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        sold.GetComponent<Animator>().SetInteger("Do", 1);
+                       yield return new WaitForSeconds(0.5f);
+                    }
+                    sold.GetComponent<Animator>().SetInteger("Do", 0);
+
+                    yield return new WaitForSeconds(Random.Range(firetime,firetime+4));
+                }
+            }      
         }          
     }
 
