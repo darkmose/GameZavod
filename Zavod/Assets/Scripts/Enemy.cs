@@ -14,14 +14,14 @@ public class Enemy : MonoBehaviour {
     public Transform rifle;
     public GameObject player;
 
-
+    
 
     public IEnumerator bulFly(GameObject bul, float scale)
     {   Vector2 target = startPos;
         target.x = player.transform.position.x+(50*scale);
 
          if (scale > 0)
-         {
+         {  
             float x = bul.transform.position.x;
             for (; x <= startPos.x + 15;)
             {
@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour {
                 }
                 yield return null;
             }
+            Destroy(bul);
                                       
          }
          else if (scale < 0)
@@ -56,9 +57,8 @@ public class Enemy : MonoBehaviour {
                 }
                 yield return null;
             }
+            Destroy(bul);
         }
-
-
     }
 
     void Start()

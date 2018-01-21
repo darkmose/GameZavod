@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player2 : HelpPlayer {
+public class Player2 : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -11,7 +11,7 @@ public class Player2 : HelpPlayer {
         {
             if (Input.GetMouseButtonDown(0))
             {   
-                AttackDamage(collision.gameObject);
+                transform.parent.GetComponent<HelpPlayer>().AttackDamage(collision.gameObject);
                 collision.gameObject.GetComponent<Animator>().Play("EnemyDamage");
                 float scale = (float)collision.GetComponent<Enemy>().hp / (float)collision.GetComponent<Enemy>().maxhp * 0.6f;
                 int color = 200/collision.gameObject.GetComponent<Enemy>().maxhp* collision.gameObject.GetComponent<Enemy>().hp;

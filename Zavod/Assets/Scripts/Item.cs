@@ -8,6 +8,8 @@ public class Item : MonoBehaviour
     public string type;
     public string sprite;
     public string prefab;
+    public int damagePlus;
+    public int healthPlus;
     Animator animato;
     public Rigidbody2D rigi;
     GameObject sprite1;
