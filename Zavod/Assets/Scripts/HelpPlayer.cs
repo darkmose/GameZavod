@@ -105,7 +105,8 @@ public class HelpPlayer : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {     
         if (collision.tag == "takeDamage")
-        {   Destroy(collision.gameObject);
+        {
+            Destroy(collision.gameObject);
             GetComponent<Animator>().Play("RobotDamage");
             HpAdd(-5);
         }

@@ -177,3 +177,4 @@ db3b233e35a88802fed1717d19c3d9ec Assembly-CSharp.dll:.Follow
 9a6ce7dad7e8aee4b6fc16d50385a21b Assembly-CSharp.dll:Anima2D.IkCCD2D
 0e3d09c9ec595aecd6171fee3214f482 Assembly-CSharp.dll:.InvButtons
 a8e482df6d69222c2ca475ef90a9561e Assembly-CSharp.dll:.SkinnedMeshCombiner
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.HelpClick

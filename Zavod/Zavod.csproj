@@ -314,6 +314,7 @@
     <Compile Include="Assets\Scripts\CoinsMove.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\FlyHelp.cs" />
+    <Compile Include="Assets\Scripts\HelpClick.cs" />
     <Compile Include="Assets\Scripts\HelperItems.cs" />
     <Compile Include="Assets\Scripts\HelpPlayer.cs" />
     <Compile Include="Assets\Scripts\InvButtons.cs" />
