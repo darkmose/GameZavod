@@ -36,7 +36,9 @@ public class Trigger_0 : MonoBehaviour
             world.coins++;
             GameObject.Find("GlobalScripts").GetComponent<Inventory>().textinv.text = System.Convert.ToString(world.coins);
             GameObject.Find("GlobalScripts").GetComponent<Inventory>().textinvs.text = System.Convert.ToString(world.coins);
+            GetComponents<AudioSource>()[0].Play();
             Destroy(collision.collider.gameObject);
+   
 
         }
     }

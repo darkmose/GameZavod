@@ -19,7 +19,8 @@ public class World : MonoBehaviour {
     public int firetime = 3; 
 
 
-    void Start () {
+    void Start ()
+    {
         StartCoroutine("BirdInst");
         Physics2D.IgnoreLayerCollision(10, 10, true);
         Physics2D.IgnoreLayerCollision(10, 11, true);

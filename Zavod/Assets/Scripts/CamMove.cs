@@ -9,8 +9,8 @@ public class CamMove : MonoBehaviour {
    float razn,xn=-2.74f,xt;
    public float space = 3f;
 
-   
-	void Start () {
+	void Start ()
+    {
         main.orthographicSize = 6.03f;
 	}
 
@@ -40,9 +40,12 @@ public class CamMove : MonoBehaviour {
     }
 
 
+
+
     void Update()
     {
         BackMoveScene();
         CameraMove();
+
     }
 }

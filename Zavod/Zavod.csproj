@@ -323,6 +323,7 @@
     <Compile Include="Assets\Scripts\Levels.cs" />
     <Compile Include="Assets\Scripts\MenuButton.cs" />
     <Compile Include="Assets\Scripts\Move.cs" />
+    <Compile Include="Assets\Scripts\Particle.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Player2.cs" />
     <Compile Include="Assets\Scripts\popHelp.cs" />
