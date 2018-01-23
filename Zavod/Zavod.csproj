@@ -327,6 +327,7 @@
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Player2.cs" />
     <Compile Include="Assets\Scripts\popHelp.cs" />
+    <Compile Include="Assets\Scripts\ShopMenu.cs" />
     <Compile Include="Assets\Scripts\Trigger_0.cs" />
     <Compile Include="Assets\Scripts\World.cs" />
   </ItemGroup>

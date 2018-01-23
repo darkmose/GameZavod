@@ -7,4 +7,6 @@ public class HelperItems : MonoBehaviour {
     public Item it;
     public string sprite;
     public string type;
+    public int damage;
+    public int health;
 }

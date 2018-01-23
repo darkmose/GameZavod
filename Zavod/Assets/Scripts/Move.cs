@@ -35,7 +35,7 @@ using UnityEngine;
         {
             if (!isAttack && helpPlayer.energy>10)
             {
-                helpPlayer.energy -= 10;
+                helpPlayer.EnergyAdd(-15);
                 animar.SetInteger("Attack", 1);
                 StartCoroutine(attack());
             }
@@ -71,7 +71,7 @@ using UnityEngine;
                 if (helpPlayer.energy > 10)
                 {
                     particles.enableEmission = false;
-                    helpPlayer.energy -= 10;
+                    helpPlayer.EnergyAdd(-15);
                     rig.AddForce(Vector2.up * jforce, ForceMode2D.Impulse);
                     animar.SetInteger("move", 3);
                     StartCoroutine("jumptimer");
@@ -116,7 +116,7 @@ using UnityEngine;
                 if (helpPlayer.energy > 5  && run)
                 {
                     particles.enableEmission = true;
-                    helpPlayer.energy -= 1;
+                    helpPlayer.EnergyAdd(-1);
                     gmo.transform.position = Vector2.MoveTowards(gmo.transform.position, new Vector2(gmo.transform.position.x + 5 * Input.GetAxisRaw("Horizontal"), gmo.transform.position.y), Time.deltaTime * runspeed);
                     gmo.transform.localScale = new Vector2(Input.GetAxisRaw("Horizontal"), 1);
                     animar.SetInteger("move", 2);

@@ -134,6 +134,7 @@ public class Inventory : MonoBehaviour {
                     cellist[i].GetComponentInChildren<HelperItems>().it = item;
                     cellist[i].GetComponentInChildren<HelperItems>().type = item.type;
                     cellist[i].GetComponentInChildren<HelperItems>().sprite = item.sprite;
+
                 }
                 else break;         
         }

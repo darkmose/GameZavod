@@ -8,7 +8,10 @@ public class HelpPlayer : MonoBehaviour {
     public int maxEnergy = 100;
     public int energy = 100;
     public int health = 100;
-    public int damage = 3;
+    public int damage = 5;
+    public AudioClip[] move;
+    public AudioClip coins;
+    public AudioClip[] attack;
   
     [SerializeField]
     private RectTransform barHp, barEn;
@@ -46,7 +49,7 @@ public class HelpPlayer : MonoBehaviour {
     }
 
 
-    void EnergyAdd(int count)
+    public void EnergyAdd(int count)
     {
         energy = Mathf.Clamp(energy + count, 0, maxEnergy);
         UpdateEnBar();
@@ -98,9 +101,7 @@ public class HelpPlayer : MonoBehaviour {
     
 
 
-    IEnumerator timer() {
-        yield return new WaitForSeconds(0.5f);
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {     
