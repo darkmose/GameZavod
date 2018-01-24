@@ -97,6 +97,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 6af7378a45ad6da4992a71ef50ddc2eb UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 9ca6347af5ceb6b0d1c105af31b6722e UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Levels
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.HelpClick
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -122,13 +123,15 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 a301fd783d1b38fc9236c4e07406caac Assembly-CSharp.dll:.World
-0b4ec67bf00d8c3da2ac764b6051f765 Assembly-CSharp.dll:.HelpPlayer
+26dcbddd39363e6dab1351e2464b2b03 Assembly-CSharp.dll:.HelpPlayer
 eced8c8958fc8778d1b8604e9122d164 Assembly-CSharp.dll:Anima2D.IkLimb2D
 bb21ecf26db1f02f72231857956971b6 Assembly-CSharp.dll:Anima2D.SpriteMesh
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Particle
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CharacterMotion
 542530e11789dc403468901628b3f4a8 Assembly-CSharp.dll:Anima2D.Bone2D
+ebc3bdb1a967d4fb5c7300b7c05ffc98 Assembly-CSharp.dll:.ShopMenu
 68a6470d9b146708efff0ffee7d49c66 Assembly-CSharp.dll:.SpriteCycle
 8072f8cdfc454d6182bc7aff4ac97c1f Assembly-CSharp.dll:.Move
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -146,7 +149,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 e10245ebf6407bde38e71ee3699f57d2 Assembly-CSharp.dll:.SpriteCycleParallax
-b52f91c143b8d36ed2554c5ec34c407f Assembly-CSharp.dll:.CamMove
+114b14a28186bb6f126afcff104277cd Assembly-CSharp.dll:.CamMove
 6de27d44fd8221c044725607ba9fb429 Assembly-CSharp.dll:Anima2D.Control
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CoinsMove
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
@@ -155,9 +158,9 @@ b52f91c143b8d36ed2554c5ec34c407f Assembly-CSharp.dll:.CamMove
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 36834dfb5701af6fb98fa516219e44a8 Assembly-CSharp.dll:Anima2D.SpriteMeshInstance
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
-c93e0f6f23de1115ff8001a0a7802e5e Assembly-CSharp.dll:.HelperItems
+ae0c85c0d5708e0d9d90a397a0c786ef Assembly-CSharp.dll:.HelperItems
 27c92c39db77ae23b27ecd403c424843 Assembly-CSharp.dll:UnityChan.SpringBone
-eb2e02dce01b8b63c2eac899a7065e1b Assembly-CSharp.dll:.Inventory
+b7926c35439830c62867df7b418a2532 Assembly-CSharp.dll:.Inventory
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
@@ -177,4 +180,4 @@ db3b233e35a88802fed1717d19c3d9ec Assembly-CSharp.dll:.Follow
 9a6ce7dad7e8aee4b6fc16d50385a21b Assembly-CSharp.dll:Anima2D.IkCCD2D
 0e3d09c9ec595aecd6171fee3214f482 Assembly-CSharp.dll:.InvButtons
 a8e482df6d69222c2ca475ef90a9561e Assembly-CSharp.dll:.SkinnedMeshCombiner
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.HelpClick
+446d3d418606fe647f7324fa434916c5 Assembly-CSharp.dll:.ChangeWeather

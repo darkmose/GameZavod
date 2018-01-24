@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour {
     public Text textinv,textinvs;
     Animator anima;
     Image imagecur, imageprev;
+    public GameObject weatherMenu;
 
 
 
@@ -64,7 +65,7 @@ public class Inventory : MonoBehaviour {
         imagecur.color = new Color32(137, 137, 137, 200);
         fullinventory = itembar.transform.parent.GetChild(1).GetChild(0).transform;
         armorInv = itembar.transform.parent.GetChild(1).GetChild(1).transform;
-    
+        weatherMenu.SetActive(false);
     }
 
     public int ItemsCount() {
@@ -307,6 +308,16 @@ public class Inventory : MonoBehaviour {
         }
 
     }
+    void showWeather() {
+        if (!weatherMenu.activeSelf)
+        {
+            weatherMenu.SetActive(true);
+        }
+        else
+        {
+            weatherMenu.SetActive(false);
+        }
+    }
 	
 
 	void Update () {
@@ -314,6 +325,10 @@ public class Inventory : MonoBehaviour {
         ShowBar();
         CurrentBar();
         ShowInventory();
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            showWeather();
+        }
      
     }
 }
