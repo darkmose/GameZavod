@@ -6,8 +6,11 @@ public class ShopMenu : MonoBehaviour {
     public int cost;
     public int damage;
     public int speed;
+    Item[] itemsknife;
+    Item[] itemspist;
+    Item[] itemsrifle;
 
-	void Start () {
+    void Start () {
 		
 	}
 	
