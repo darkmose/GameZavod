@@ -21,6 +21,9 @@ public class World : MonoBehaviour {
 
     void Start ()
     {
+        GameObject.Find("WEATHER").transform.GetChild(0).GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music");
+        GameObject.Find("WEATHER").transform.GetChild(1).GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music");
+        GameObject.Find("WEATHER").transform.GetChild(2).GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music");
         StartCoroutine("BirdInst");
         Physics2D.IgnoreLayerCollision(10, 10, true);
         Physics2D.IgnoreLayerCollision(10, 11, true);

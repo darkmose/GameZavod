@@ -117,10 +117,9 @@ public class Enemy : MonoBehaviour {
         }
         else spritemesh.spriteMesh = face1;
         ToPlayer();
-        if (hp==0)
+        if (hp == 0)
         {
             GetComponent<Animator>().Play("EnemyDie");
-            
         }
     }
 

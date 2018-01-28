@@ -13,9 +13,15 @@ public class InvButtons : MonoBehaviour {
     string[] menuname = new string[3];
     public bool isEvent,isEndAnimButton;
     Inventory inventorrrrry;
+    HelpPlayer player;
+    Text dmg, armr;
 
     private void Start()
     {
+        dmg = GameObject.Find("StatsOnScreen").transform.GetChild(0).GetComponent<Text>();
+        armr = GameObject.Find("StatsOnScreen").transform.GetChild(1).GetComponent<Text>();
+        player = GameObject.Find("Player").GetComponent<HelpPlayer>();
+        
         menu = new Button[3];
         isEndAnimButton = false;
         inventorrrrry = GameObject.Find("GlobalScripts").GetComponent<Inventory>();
@@ -126,6 +132,7 @@ public class InvButtons : MonoBehaviour {
         newObj.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprite);
         newObj.GetComponent<SpriteRenderer>().sortingLayerName = "RobotLayer";
         newObj.GetComponent<SpriteRenderer>().sortingOrder = 300;
+
     }
 
     void Equip()
@@ -134,6 +141,8 @@ public class InvButtons : MonoBehaviour {
         {
             HandHelper(cell.GetComponentInChildren<HelperItems>().sprite);
             InCellArmorHelper(5);
+            player.damage = 5 + cell.GetComponentInChildren<HelperItems>().damage;
+            dmg.text = player.damage.ToString();
         }
         else if (cell.GetComponentInChildren<HelperItems>().type == "legs")
         {

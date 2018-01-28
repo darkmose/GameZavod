@@ -13,6 +13,7 @@ using UnityEngine;
     bool run = true;
     HelpPlayer helpPlayer;
     ParticleSystem particles;
+    public bool move = true;
   
 
     void Start()
@@ -31,7 +32,7 @@ using UnityEngine;
     }
 
     void Attack() {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && move)
         {
             if (!isAttack && helpPlayer.energy>10)
             {
@@ -68,7 +69,7 @@ using UnityEngine;
         {
             if (Input.GetButtonDown("Jump") && Time.timeScale > 0 && flag)
             {
-                if (helpPlayer.energy > 10)
+                if (helpPlayer.energy > 10 && move)
                 {
                     particles.enableEmission = false;
                     helpPlayer.EnergyAdd(-15);
@@ -87,11 +88,11 @@ using UnityEngine;
     }  
 
     void Walk() {
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetButton("Horizontal") && move)
         {
             if (Time.timeScale > 0 && (Input.GetAxisRaw("Horizontal") < 0 || Input.GetAxisRaw("Horizontal") > 0))
             {
-                if (!inAir)
+                if (!inAir && GameObject.Find("WEATHER").transform.GetChild(0).gameObject.activeSelf)
                 {
                     particles.enableEmission = true;
                 }
@@ -109,13 +110,17 @@ using UnityEngine;
     }
 
     void Run() {
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetButton("Horizontal") && move)
         {
             if (Input.GetKey(KeyCode.LeftShift) && Time.timeScale > 0f && (Input.GetAxisRaw("Horizontal") < 0 || Input.GetAxisRaw("Horizontal") > 0))
             {
                 if (helpPlayer.energy > 5  && run)
                 {
-                    particles.enableEmission = true;
+                    if (GameObject.Find("WEATHER").transform.GetChild(0).gameObject.activeSelf)
+                    {
+                        particles.enableEmission = true;
+                    }
+                    
                     helpPlayer.EnergyAdd(-1);
                     gmo.transform.position = Vector2.MoveTowards(gmo.transform.position, new Vector2(gmo.transform.position.x + 5 * Input.GetAxisRaw("Horizontal"), gmo.transform.position.y), Time.deltaTime * runspeed);
                     gmo.transform.localScale = new Vector2(Input.GetAxisRaw("Horizontal"), 1);

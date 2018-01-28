@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class Inventory : MonoBehaviour {
    
@@ -24,14 +25,11 @@ public class Inventory : MonoBehaviour {
     Image imagecur, imageprev;
     public GameObject weatherMenu;
 
-
-
-
     //fullinventory === Итемы в правой части
     //itembar === Итемы сверху
     //armorInv === Итемы в левой части
-   
-            //ARMOR CELLS:
+
+    //ARMOR CELLS:
     //imenno 1, a ne 0////1-head
     //2-Torso
     //3-Legs
@@ -135,8 +133,9 @@ public class Inventory : MonoBehaviour {
                     cellist[i].GetComponentInChildren<HelperItems>().it = item;
                     cellist[i].GetComponentInChildren<HelperItems>().type = item.type;
                     cellist[i].GetComponentInChildren<HelperItems>().sprite = item.sprite;
+                    cellist[i].GetComponentInChildren<HelperItems>().damage = item.damagePlus;
 
-                }
+            }
                 else break;         
         }
         isBar = true;
@@ -157,7 +156,7 @@ public class Inventory : MonoBehaviour {
     public void HelperInvOpen() {
         playerpos = player.transform;
         playerscale = player.transform.localScale.x;
-        player.SetActive(false);
+       
        
         fullinventory.parent.gameObject.SetActive(true);
         if (isInv)
@@ -192,6 +191,7 @@ public class Inventory : MonoBehaviour {
                     fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().it = item;
                     fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().type = item.type;
                     fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().sprite = item.sprite;
+                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().damage = item.damagePlus;
                 }
                
             }
@@ -293,18 +293,21 @@ public class Inventory : MonoBehaviour {
 
         if (!isInv && Input.GetKeyDown(KeyCode.BackQuote) && !GameObject.Find("GlobalScripts").GetComponent<PauseMenu>().isPause)
         {
+            GameObject.Find("Player").GetComponent<Move>().move = false;
             if (!isBar)
             {
+                
                 HelperBarOpen();                
             }
             HelperInvOpen();
             HelperArmorOpen();
         }
-        else if ((isInv && Input.GetKeyDown(KeyCode.BackQuote)) || (isInv && Input.GetButtonDown("Cancel"))) 
+        else if ((isInv && Input.GetKeyDown(KeyCode.BackQuote)) || (isInv && Input.GetButtonDown("Cancel")))
         {
             HelperInvClose();
             HelperBarClose();
             HelperArmorClose();
+            GameObject.Find("Player").GetComponent<Move>().move = true;
         }
 
     }

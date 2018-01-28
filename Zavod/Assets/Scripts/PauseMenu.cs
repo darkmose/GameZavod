@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class PauseMenu : MonoBehaviour {
     public bool isPause=false, canQuit;
     public GameObject can;
     public GameObject can1;
+    public GameObject options;
     GameObject player;
+    public Slider music,sound;
 
 
     void Start () {
@@ -43,6 +47,22 @@ public class PauseMenu : MonoBehaviour {
         can.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
         can1.SetActive(true);
 
+    }
+
+    public void Options() {
+        options.SetActive(true);
+        music.value = PlayerPrefs.GetFloat("Music") * 100;
+        sound.value = PlayerPrefs.GetFloat("SFX") * 100;        
+    }
+    public void OptionsExit()
+    {
+        PlayerPrefs.SetFloat("Music", music.value / 100);
+        PlayerPrefs.SetFloat("SFX", sound.value / 100);
+        PlayerPrefs.Save();
+        GameObject.Find("WEATHER").transform.GetChild(0).GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music");
+        GameObject.Find("WEATHER").transform.GetChild(1).GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music");
+        GameObject.Find("WEATHER").transform.GetChild(2).GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music");
+        options.SetActive(false);
     }
 
 

@@ -42,6 +42,7 @@ public class Levels : MonoBehaviour {
     {
         if (Input.GetMouseButtonUp(0))
         {
+            GameObject.Find("Main Camera").GetComponentInChildren<AudioSource>().mute = true;
             this.gameObject.SetActive(true);
             StartCoroutine(loadLevel(level));
         }        
