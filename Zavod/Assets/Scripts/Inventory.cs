@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour {
     int itembarelement;
     public bool isBar,isInv;
     public float playerscale;
-    public GameObject itembar;
+    public GameObject itembar,creator;
     private GameObject player;
     public GameObject container;
     public List<Item> items;
@@ -24,6 +24,7 @@ public class Inventory : MonoBehaviour {
     Animator anima;
     Image imagecur, imageprev;
     public GameObject weatherMenu;
+    
 
     //fullinventory === Итемы в правой части
     //itembar === Итемы сверху
@@ -332,6 +333,10 @@ public class Inventory : MonoBehaviour {
         {
             showWeather();
         }
-     
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            creator.SetActive(!creator.activeSelf);
+        }
+
     }
 }

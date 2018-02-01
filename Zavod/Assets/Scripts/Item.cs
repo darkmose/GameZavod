@@ -4,14 +4,18 @@ using UnityEngine;
 
 
 public class Item : MonoBehaviour
-{
+{   public int cost;
     public string type;
     public string sprite;
     public string prefab;
     public int damagePlus;
+    public int GunDamage;
+    public float handRadius;
     public int speed;
     public int bullets;
     public int healthPlus;
+    public Vector2 handPos;
+    public Vector3 handAngle;
     Animator animato;
     public Rigidbody2D rigi;
     GameObject sprite1;

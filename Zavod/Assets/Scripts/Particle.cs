@@ -5,7 +5,7 @@ using UnityEngine;
 public class Particle : MonoBehaviour {
 
 	void Update () {
-        if (this.gameObject.activeSelf && !GameObject.Find("Global Scripts").GetComponent<PauseMenu>().isPause)
+        if (this.gameObject.activeSelf && !GameObject.Find("GlobalScripts").GetComponent<PauseMenu>().isPause)
         {
             Vector2 vector = transform.position;
             vector.x = GameObject.Find("Player").transform.position.x;

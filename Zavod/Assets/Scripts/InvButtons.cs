@@ -26,7 +26,7 @@ public class InvButtons : MonoBehaviour {
         isEndAnimButton = false;
         inventorrrrry = GameObject.Find("GlobalScripts").GetComponent<Inventory>();
         isEvent = false;
-        menuname[0] = "Использовать";
+        menuname[0] = "Использ.";
         menuname[1] = "В Хот-Бар";
         menuname[2] = "Выбросить";
         cell = this.gameObject;

@@ -29,7 +29,7 @@ public class World : MonoBehaviour {
         Physics2D.IgnoreLayerCollision(10, 11, true);
         Physics2D.IgnoreLayerCollision(10, 8, true);
         Physics2D.IgnoreLayerCollision(11, 8, true);
-        // StartCoroutine(InvasionEvent());
+        StartCoroutine(InvasionEvent());
     }
 
     IEnumerator InvasionEvent() {
@@ -44,7 +44,8 @@ public class World : MonoBehaviour {
                 yield return new WaitForSeconds(3);
             }
             GameObject.Find("Vertolety").GetComponent<Animator>().SetBool("invasion", false);
-            yield return new WaitForSeconds(500);
+            k = Random.Range(100, 500);
+            yield return new WaitForSeconds(k);
         }
     }
     
