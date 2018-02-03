@@ -54,6 +54,12 @@ public class Inventory : MonoBehaviour {
         anima = itembar.GetComponent<Animator>();
         itembar.SetActive(false);
 
+        if (!PlayerPrefs.HasKey("ShopIndex"))
+        {
+            PlayerPrefs.SetInt("ShopIndex", 0);
+        }
+       
+
         for (int i = 0; i < itembar.transform.childCount; i++)
         {
           cellist.Add(itembar.transform.GetChild(i).gameObject);
@@ -127,8 +133,8 @@ public class Inventory : MonoBehaviour {
                     Item item = hotbar[i];
                     GameObject img = Instantiate(container);
                     img.transform.SetParent(cellist[i].transform);
-                    img.GetComponent<RectTransform>().localScale = new Vector2(1, 1);
-                    img.GetComponent<RectTransform>().localPosition = new Vector3(img.GetComponent<RectTransform>().position.x, img.GetComponent<RectTransform>().position.y, 0);
+                    img.GetComponent<RectTransform>().localScale = Vector2.one;
+                    img.GetComponent<RectTransform>().localPosition =Vector2.zero;
                     img.GetComponent<Image>().sprite = Resources.Load<Sprite>(item.sprite);
                     cellist[i].GetComponentInChildren<HelperItems>().helpsprefab = item.prefab;
                     cellist[i].GetComponentInChildren<HelperItems>().it = item;
@@ -145,7 +151,7 @@ public class Inventory : MonoBehaviour {
                     cellist[i].GetComponentInChildren<HelperItems>().speed = item.speed;
                     cellist[i].GetComponentInChildren<HelperItems>().health = item.healthPlus;
 
-            }
+                }
                 else break;         
         }
         isBar = true;
@@ -166,9 +172,11 @@ public class Inventory : MonoBehaviour {
     public void HelperInvOpen() {
         playerpos = player.transform;
         playerscale = player.transform.localScale.x;
-       
-       
-        fullinventory.parent.gameObject.SetActive(true);
+
+        if (!isInv)
+        {
+          fullinventory.parent.gameObject.SetActive(true);
+        }        
         if (isInv)
         {
             for (int i = 0; i < 8; i++)
@@ -187,34 +195,26 @@ public class Inventory : MonoBehaviour {
         
         for (int i = 0; i < items.Count; i++)
         {
-            if (fullinventory.childCount > i)
-            {
-                if (fullinventory.GetChild(i).childCount==0)
-                {
-                    Item item = items[i];
-                    GameObject img = Instantiate(container);
-                    img.transform.SetParent(fullinventory.GetChild(i).transform);
-                    img.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-                    img.GetComponent<RectTransform>().localPosition = new Vector3(img.GetComponent<RectTransform>().position.x, img.GetComponent<RectTransform>().position.y, 0);
-                    img.GetComponent<Image>().sprite = Resources.Load<Sprite>(item.sprite);
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().helpsprefab = item.prefab;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().it = item;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().type = item.type;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().sprite = item.sprite;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().bullets = item.bullets;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().descr = item.descr;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().cost = item.cost;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().handPos = item.handPos;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().handRadius = item.handRadius;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().handAngle = item.handAngle;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().GunDamage = item.GunDamage;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().speed = item.speed;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().health = item.healthPlus;
-                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().damage = item.damagePlus;
-                }
-               
-            }
-            else break;
+            Item item = items[i];
+            GameObject img = Instantiate(container);
+            img.transform.SetParent(fullinventory.GetChild(i).transform);
+            img.GetComponent<RectTransform>().localScale = Vector2.one;
+            img.GetComponent<RectTransform>().localPosition = Vector2.zero;
+            img.GetComponent<Image>().sprite = Resources.Load<Sprite>(item.sprite);
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().helpsprefab = item.prefab;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().it = item;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().type = item.type;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().sprite = item.sprite;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().bullets = item.bullets;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().descr = item.descr;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().cost = item.cost;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().handPos = item.handPos;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().handRadius = item.handRadius;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().handAngle = item.handAngle;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().GunDamage = item.GunDamage;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().speed = item.speed;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().health = item.healthPlus;
+            fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().damage = item.damagePlus;
         }
         isInv = true;
 
@@ -264,8 +264,8 @@ public class Inventory : MonoBehaviour {
             }
                 GameObject img = Instantiate(container);
                 img.transform.SetParent(armorInv.GetChild(i).transform);
-                img.GetComponent<RectTransform>().localScale = new Vector2(1, 1);
-                img.GetComponent<RectTransform>().localPosition = new Vector3(img.GetComponent<RectTransform>().position.x, img.GetComponent<RectTransform>().position.y, 0);
+                img.GetComponent<RectTransform>().localScale = Vector2.one;
+                img.GetComponent<RectTransform>().localPosition = Vector2.zero;
                 img.GetComponent<Image>().sprite = Resources.Load<Sprite>(item.sprite);
                 armorInv.GetChild(i).GetComponentInChildren<HelperItems>().helpsprefab = item.prefab;
                 armorInv.GetChild(i).GetComponentInChildren<HelperItems>().it = item;
@@ -323,9 +323,8 @@ public class Inventory : MonoBehaviour {
         {
             GameObject.Find("Player").GetComponent<Move>().move = false;
             if (!isBar)
-            {
-                
-                HelperBarOpen();                
+            {                
+                HelperBarOpen();               
             }
             HelperInvOpen();
             HelperArmorOpen();
@@ -360,7 +359,7 @@ public class Inventory : MonoBehaviour {
         {
             showWeather();
         }
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && !isInv)
         {
             if (creator.activeSelf)
             {
@@ -370,7 +369,7 @@ public class Inventory : MonoBehaviour {
             {         
                 creator.SetActive(true);
                 creator.GetComponent<ShopMenu>().createZone.gameObject.SetActive(false);
-                creator.GetComponent<ShopMenu>().Open(0);
+                creator.GetComponent<ShopMenu>().Open(PlayerPrefs.GetInt("ShopIndex"));
             }
             
         }

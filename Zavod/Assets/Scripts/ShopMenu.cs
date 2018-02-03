@@ -16,24 +16,31 @@ public class ShopMenu : MonoBehaviour {
 
     
     void Start () {
-        container = Resources.Load<GameObject>("prefabs/container");
-       
+        container = Resources.Load<GameObject>("prefabs/container");       
     }
 
     IEnumerator animate(Item item)
-    {       
+    {
+        createZone.GetChild(0).GetChild(1).gameObject.SetActive(true);
+        createZone.parent.gameObject.SetActive(true);
         createZone.GetComponent<Animator>().Play("Creator2Move");
         yield return new WaitForSeconds(createZone.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         createZone.GetChild(0).GetComponent<Animator>().Play("createItem2");
         createZone.GetChild(0).GetChild(1).GetComponent<Animator>().Play("createItem");
-        yield return new WaitForSeconds(createZone.GetChild(0).GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(2f);
+        createZone.GetChild(0).GetChild(1).gameObject.SetActive(false);
         icon2.GetComponent<Image>().enabled = false;
         GameObject.Find("GlobalScripts").GetComponent<Inventory>().items.Add(item);
         createZone.GetComponent<Animator>().Play("Creator2Back");
+        yield return new WaitForSeconds(createZone.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        createZone.parent.gameObject.SetActive(false);
     }
 
     public void Buy(HelperItems item) {
-        if (GameObject.Find("GlobalScripts").GetComponent<World>().coins>=item.cost)
+
+        int count = GameObject.Find("GlobalScripts").GetComponent<Inventory>().ItemsCount();
+        
+        if (GameObject.Find("GlobalScripts").GetComponent<World>().coins>=item.cost && count<9)
         {
             GameObject.Find("GlobalScripts").GetComponent<World>().coins -= item.cost;
             GameObject.Find("GlobalScripts").GetComponent<Inventory>().textinv.text = System.Convert.ToString(GameObject.Find("GlobalScripts").GetComponent<World>().coins);
@@ -47,6 +54,7 @@ public class ShopMenu : MonoBehaviour {
 
     public void Open(int index)
     {
+        PlayerPrefs.SetInt("ShopIndex", index);
         if (index == 0)
         {
             Load(itemsknife);

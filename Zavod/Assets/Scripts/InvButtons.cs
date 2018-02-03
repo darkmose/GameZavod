@@ -96,7 +96,6 @@ public class InvButtons : MonoBehaviour {
         inventorrrrry.items.Remove(cell.GetComponentInChildren<HelperItems>().it);
         inventorrrrry.items.Add(temp);
         Destroy(inventorrrrry.rhand.GetChild(0).gameObject);
-        HandHelper(inventorrrrry.armor[i - 1].sprite);
     }
 
     private void InCellArmorHelper(int index)
@@ -112,8 +111,6 @@ public class InvButtons : MonoBehaviour {
         else
         {
             ItemBack(index);
-            inventorrrrry.HelperInvOpen();
-            inventorrrrry.HelperArmorOpen();
         }
         if (isEvent && isEndAnimButton)
         {
@@ -123,26 +120,33 @@ public class InvButtons : MonoBehaviour {
 
     }
 
-    void HandHelper(string sprite) {
+    void HandHelper(string sprite, HelperItems item)
+    {
+        if (inventorrrrry.rhand.childCount>0)
+        {
+            Destroy(inventorrrrry.rhand.GetChild(0).gameObject);
+        }
         GameObject newObj = Instantiate(prefab);
         newObj.transform.SetParent(inventorrrrry.rhand);
-        newObj.transform.localPosition = new Vector2(0.157f, 0.057f);
-        newObj.transform.localRotation = Quaternion.Euler(0f, 0f, 54.5f);
+        newObj.transform.localPosition = item.handPos;
+        newObj.transform.localRotation = Quaternion.Euler(0f, 0f, item.handAngle.z);
         newObj.transform.localScale = new Vector2(1f, 1f);
         newObj.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprite);
         newObj.GetComponent<SpriteRenderer>().sortingLayerName = "RobotLayer";
         newObj.GetComponent<SpriteRenderer>().sortingOrder = 300;
-
     }
 
     void Equip()
     {
         if (cell.GetComponentInChildren<HelperItems>().type == "hands")
         {
-            HandHelper(cell.GetComponentInChildren<HelperItems>().sprite);
+            HandHelper(cell.GetComponentInChildren<HelperItems>().sprite,cell.GetComponentInChildren<HelperItems>());
             InCellArmorHelper(5);
             player.damage = 5 + cell.GetComponentInChildren<HelperItems>().damage;
-            dmg.text = player.damage.ToString();
+            dmg.text = player.damage.ToString();        
+            inventorrrrry.HelperInvOpen();
+            inventorrrrry.HelperArmorOpen();
+            inventorrrrry.HelperBarOpen();
         }
         else if (cell.GetComponentInChildren<HelperItems>().type == "legs")
         {

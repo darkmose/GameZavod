@@ -62,11 +62,6 @@ public class HelpPlayer : MonoBehaviour {
 
     }
 
-    private void Update()
-    {
-
-    }
-
     IEnumerator plusEnergy()
     {
         while (energy < maxEnergy)
@@ -96,9 +91,7 @@ public class HelpPlayer : MonoBehaviour {
             }
 
         }        
-    }
-
-    
+    }  
 
 
     
