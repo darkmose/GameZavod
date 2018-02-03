@@ -5,7 +5,7 @@ using Anima2D;
 
 public class World : MonoBehaviour {
     public float birdSpeed = 10f;
-    public int coins = 0;
+    public int coins = 1000;
     public Vector2 startpos;
     Vector2 flu;
     //public GameObject groundPanel;
@@ -29,7 +29,7 @@ public class World : MonoBehaviour {
         Physics2D.IgnoreLayerCollision(10, 11, true);
         Physics2D.IgnoreLayerCollision(10, 8, true);
         Physics2D.IgnoreLayerCollision(11, 8, true);
-        StartCoroutine(InvasionEvent());
+        //StartCoroutine(InvasionEvent());
     }
 
     IEnumerator InvasionEvent() {

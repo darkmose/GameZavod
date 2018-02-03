@@ -135,6 +135,15 @@ public class Inventory : MonoBehaviour {
                     cellist[i].GetComponentInChildren<HelperItems>().type = item.type;
                     cellist[i].GetComponentInChildren<HelperItems>().sprite = item.sprite;
                     cellist[i].GetComponentInChildren<HelperItems>().damage = item.damagePlus;
+                    cellist[i].GetComponentInChildren<HelperItems>().bullets = item.bullets;
+                    cellist[i].GetComponentInChildren<HelperItems>().descr = item.descr;
+                    cellist[i].GetComponentInChildren<HelperItems>().cost = item.cost;
+                    cellist[i].GetComponentInChildren<HelperItems>().handPos = item.handPos;
+                    cellist[i].GetComponentInChildren<HelperItems>().handRadius = item.handRadius;
+                    cellist[i].GetComponentInChildren<HelperItems>().handAngle = item.handAngle;
+                    cellist[i].GetComponentInChildren<HelperItems>().GunDamage = item.GunDamage;
+                    cellist[i].GetComponentInChildren<HelperItems>().speed = item.speed;
+                    cellist[i].GetComponentInChildren<HelperItems>().health = item.healthPlus;
 
             }
                 else break;         
@@ -192,6 +201,15 @@ public class Inventory : MonoBehaviour {
                     fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().it = item;
                     fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().type = item.type;
                     fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().sprite = item.sprite;
+                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().bullets = item.bullets;
+                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().descr = item.descr;
+                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().cost = item.cost;
+                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().handPos = item.handPos;
+                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().handRadius = item.handRadius;
+                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().handAngle = item.handAngle;
+                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().GunDamage = item.GunDamage;
+                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().speed = item.speed;
+                    fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().health = item.healthPlus;
                     fullinventory.GetChild(i).GetComponentInChildren<HelperItems>().damage = item.damagePlus;
                 }
                
@@ -253,7 +271,16 @@ public class Inventory : MonoBehaviour {
                 armorInv.GetChild(i).GetComponentInChildren<HelperItems>().it = item;
                 armorInv.GetChild(i).GetComponentInChildren<HelperItems>().type = item.type;
                 armorInv.GetChild(i).GetComponentInChildren<HelperItems>().sprite = item.sprite;
-
+                armorInv.GetChild(i).GetComponentInChildren<HelperItems>().bullets = item.bullets;
+                armorInv.GetChild(i).GetComponentInChildren<HelperItems>().descr = item.descr;
+                armorInv.GetChild(i).GetComponentInChildren<HelperItems>().cost = item.cost;
+                armorInv.GetChild(i).GetComponentInChildren<HelperItems>().handPos = item.handPos;
+                armorInv.GetChild(i).GetComponentInChildren<HelperItems>().handRadius = item.handRadius;
+                armorInv.GetChild(i).GetComponentInChildren<HelperItems>().handAngle = item.handAngle;
+                armorInv.GetChild(i).GetComponentInChildren<HelperItems>().GunDamage = item.GunDamage;
+                armorInv.GetChild(i).GetComponentInChildren<HelperItems>().speed = item.speed;
+                armorInv.GetChild(i).GetComponentInChildren<HelperItems>().health = item.healthPlus;
+                armorInv.GetChild(i).GetComponentInChildren<HelperItems>().damage = item.damagePlus;
         lable:
             continue;
         }
@@ -292,7 +319,7 @@ public class Inventory : MonoBehaviour {
 
     void ShowInventory() {
 
-        if (!isInv && Input.GetKeyDown(KeyCode.BackQuote) && !GameObject.Find("GlobalScripts").GetComponent<PauseMenu>().isPause)
+        if (!isInv && Input.GetKeyDown(KeyCode.BackQuote) && !GameObject.Find("GlobalScripts").GetComponent<PauseMenu>().isPause && !creator.activeSelf)
         {
             GameObject.Find("Player").GetComponent<Move>().move = false;
             if (!isBar)
@@ -335,7 +362,17 @@ public class Inventory : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            creator.SetActive(!creator.activeSelf);
+            if (creator.activeSelf)
+            {
+                creator.SetActive(false);                
+            }
+            else if (!creator.activeSelf)
+            {         
+                creator.SetActive(true);
+                creator.GetComponent<ShopMenu>().createZone.gameObject.SetActive(false);
+                creator.GetComponent<ShopMenu>().Open(0);
+            }
+            
         }
 
     }

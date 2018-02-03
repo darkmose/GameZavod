@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
     public int speed;
     public int bullets;
     public int healthPlus;
+    public string descr;
     public Vector2 handPos;
     public Vector3 handAngle;
     Animator animato;
