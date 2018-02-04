@@ -312,7 +312,6 @@
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\CamMove.cs" />
     <Compile Include="Assets\Scripts\ChangeWeather.cs" />
-    <Compile Include="Assets\Scripts\CoinsMove.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\FlyHelp.cs" />
     <Compile Include="Assets\Scripts\HelpClick.cs" />

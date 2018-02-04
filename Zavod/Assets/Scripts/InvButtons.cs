@@ -26,12 +26,29 @@ public class InvButtons : MonoBehaviour {
         isEndAnimButton = false;
         inventorrrrry = GameObject.Find("GlobalScripts").GetComponent<Inventory>();
         isEvent = false;
-        menuname[0] = "Использ.";
-        menuname[1] = "В Хот-Бар";
-        menuname[2] = "Выбросить";
+
+        
+
         cell = this.gameObject;
         PathPanel = "prefabs/Panel";
         PathPopup = "prefabs/Popup";
+    }
+
+    void SetMenuName()
+    {
+        if (cell.transform.parent == inventorrrrry.getInvTransform())
+        {
+            menuname[0] = "Equip";
+            menuname[1] = "To HotBar";
+            menuname[2] = "Throw Out";
+        }
+        else
+        {
+            menu = new Button[2];
+            menuname = new string[2];
+            menuname[0] = "Unequip";
+            menuname[1] = "ThrowOut";
+        }
     }
 
     IEnumerator TextSize(int i) {
@@ -45,7 +62,7 @@ public class InvButtons : MonoBehaviour {
     }
     IEnumerator MenuExic()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < menu.Length; i++)
         {
             menu[i] = Instantiate<Button>(Resources.Load<Button>(PathPopup));
             menu[i].transform.SetParent(popap.transform);
@@ -54,9 +71,17 @@ public class InvButtons : MonoBehaviour {
             menu[i].GetComponentInChildren<Text>().text = menuname[i]; 
             yield return StartCoroutine(TextSize(i));
         }
-        menu[0].onClick.AddListener(Equip);
-        menu[1].onClick.AddListener(HotBar);
-        menu[2].onClick.AddListener(Remove);
+        if (menu.Length==2)
+        {
+            menu[0].onClick.AddListener(UnEquip);
+            menu[1].onClick.AddListener(Remove);
+        }
+        else
+        {
+            menu[0].onClick.AddListener(Equip);
+            menu[1].onClick.AddListener(HotBar);
+            menu[2].onClick.AddListener(Remove);
+        }
         isEndAnimButton = true;
     }
 
@@ -136,6 +161,7 @@ public class InvButtons : MonoBehaviour {
         newObj.GetComponent<SpriteRenderer>().sortingOrder = 300;
     }
 
+
     void Equip()
     {
         if (cell.GetComponentInChildren<HelperItems>().type == "hands")
@@ -157,6 +183,29 @@ public class InvButtons : MonoBehaviour {
             InCellArmorHelper(1);
         }
     }
+    void UnEquip() {
+        if (inventorrrrry.items.Count < 9)
+        {
+            if (cell.GetComponentInChildren<HelperItems>().type == "hands")
+            {
+                Destroy(inventorrrrry.rhand.GetChild(0).gameObject);
+                inventorrrrry.armor[4] = null;
+                inventorrrrry.items.Add(cell.GetComponentInChildren<HelperItems>().it);
+                Destroy(cell.transform.GetChild(0).gameObject);
+            }
+            else if (cell.GetComponentInChildren<HelperItems>().type == "legs")
+            {
+
+            }
+            else
+            {
+
+            }
+            inventorrrrry.HelperInvOpen();
+            inventorrrrry.HelperArmorOpen();
+            inventorrrrry.HelperBarOpen();
+        }
+    }
 
     public void Enter()
     {       
@@ -174,6 +223,7 @@ public class InvButtons : MonoBehaviour {
     {
         if (cell.transform.childCount > 0 && !isEvent)
         {
+            SetMenuName();
             isEndAnimButton = false;
             popap = Instantiate(Resources.Load<GameObject>(PathPanel));
             popap.transform.SetParent(cell.transform.parent);

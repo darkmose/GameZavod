@@ -5,26 +5,28 @@ using UnityEngine.UI;
 using System.IO;
 
 public class Inventory : MonoBehaviour {
-   
+
     int itembarelement;
-    public bool isBar,isInv;
+    public bool isBar, isInv;
+    [HideInInspector]
     public float playerscale;
-    public GameObject itembar,creator;
+    public GameObject itembar, creator;
     private GameObject player;
     public GameObject container;
     public List<Item> items;
     public List<GameObject> cellist;
     public List<Item> hotbar;
     public Item[] armor;
-    private Transform fullinventory;
+    [HideInInspector]
+    public Transform fullinventory;
     public Transform armorInv;
     public Transform playerpos;
-    public Transform rhand,footsL,footsR,torso;
-    public Text textinv,textinvs;
+    public Transform rhand, footsL, footsR, torso;
+    public Text textinv, textinvs;
     Animator anima;
     Image imagecur, imageprev;
     public GameObject weatherMenu;
-    
+
 
     //fullinventory === Итемы в правой части
     //itembar === Итемы сверху
@@ -39,7 +41,7 @@ public class Inventory : MonoBehaviour {
 
 
 
-    public void Start () {
+    public void Start() {
         player = GameObject.Find("Player");
         rhand = player.transform.GetChild(0).GetChild(7).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(0).transform;
         footsL = player.transform.GetChild(0).GetChild(7).GetChild(0).GetChild(2).transform;
@@ -58,19 +60,22 @@ public class Inventory : MonoBehaviour {
         {
             PlayerPrefs.SetInt("ShopIndex", 0);
         }
-       
+
 
         for (int i = 0; i < itembar.transform.childCount; i++)
         {
-          cellist.Add(itembar.transform.GetChild(i).gameObject);
+            cellist.Add(itembar.transform.GetChild(i).gameObject);
         }
-             
+
         itembarelement = 0;
         imagecur = cellist[itembarelement].GetComponent<Image>();
         imagecur.color = new Color32(137, 137, 137, 200);
         fullinventory = itembar.transform.parent.GetChild(1).GetChild(0).transform;
         armorInv = itembar.transform.parent.GetChild(1).GetChild(1).transform;
         weatherMenu.SetActive(false);
+    }
+    public Transform getInvTransform() {
+        return fullinventory;
     }
 
     public int ItemsCount() {
