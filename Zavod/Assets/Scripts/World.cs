@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Anima2D;
 
-public class World : MonoBehaviour {
+public class World : MonoBehaviour
+{
     public float birdSpeed = 10f;
     public int coins = 1000;
     public Vector2 startpos;
@@ -15,11 +16,12 @@ public class World : MonoBehaviour {
     public Transform spawn1, spawn2;
     public GameObject solduer;
     public float speedSoldier = 5f;
-    
-    public int firetime = 3; 
+    Timer settimer = new Timer();
+
+    public int firetime = 3;
 
 
-    void Start ()
+    void Start()
     {
         GameObject.Find("WEATHER").transform.GetChild(0).GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music");
         GameObject.Find("WEATHER").transform.GetChild(1).GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Music");
@@ -32,48 +34,51 @@ public class World : MonoBehaviour {
         //StartCoroutine(InvasionEvent());
     }
 
-    IEnumerator InvasionEvent() {
-        while (true)
-        {
-            GameObject.Find("Vertolety").GetComponent<Animator>().SetBool("invasion", true);
-            yield return new WaitForSeconds(5);
-            int k = Random.Range(1, 3);
-            for (int i = 0; i < k; i++)
-            {
-                SoldierInst();
-                yield return new WaitForSeconds(3);
-            }
-            GameObject.Find("Vertolety").GetComponent<Animator>().SetBool("invasion", false);
-            k = Random.Range(100, 500);
-            yield return new WaitForSeconds(k);
-        }
-    }
-    
+    IEnumerator InvasionEvent()
+    {
 
- /*   void StartGround() {
-        float x = 0;
-        Vector2 pos = new Vector2(x,0);
-        GameObject panel = Instantiate<GameObject>(groundPanel,pos,Quaternion.identity,ground);
-        for (int i = 0; i < count;i++)
+        GameObject.Find("Vertolety").GetComponent<Animator>().SetBool("invasion", true);
+        yield return new WaitForSeconds(5);
+        int k = Random.Range(1, 3);
+        for (int i = 0; i < k; i++)
         {
-            x += size;
-            pos = new Vector2(x, 0);
-            panel = Instantiate<GameObject>(groundPanel, pos, Quaternion.identity, ground);
-            pos = new Vector2(-x, 0);
-            panel = Instantiate<GameObject>(groundPanel, pos, Quaternion.identity, ground);
-        }        
-    }*/
+            SoldierInst();
+            yield return new WaitForSeconds(3);
+        }
+        GameObject.Find("Vertolety").GetComponent<Animator>().SetBool("invasion", false);
+
+    }
+
+    public void Invasion()
+    {
+        StartCoroutine(InvasionEvent());
+    }
+
+
+    /*   void StartGround() {
+           float x = 0;
+           Vector2 pos = new Vector2(x,0);
+           GameObject panel = Instantiate<GameObject>(groundPanel,pos,Quaternion.identity,ground);
+           for (int i = 0; i < count;i++)
+           {
+               x += size;
+               pos = new Vector2(x, 0);
+               panel = Instantiate<GameObject>(groundPanel, pos, Quaternion.identity, ground);
+               pos = new Vector2(-x, 0);
+               panel = Instantiate<GameObject>(groundPanel, pos, Quaternion.identity, ground);
+           }        
+       }*/
 
     IEnumerator BirdInst()
     {
         while (true)
         {
-            GameObject bird = Instantiate(Resources.Load<GameObject>("prefabs/Bird"),startpos, Quaternion.identity, GameObject.Find("Fly").transform);
-            for ( ;bird.transform.position.x < 119f; )
+            GameObject bird = Instantiate(Resources.Load<GameObject>("prefabs/Bird"), startpos, Quaternion.identity, GameObject.Find("Fly").transform);
+            for (; bird.transform.position.x < 119f;)
             {
                 flu = bird.transform.position;
                 flu.x += 20;
-                bird.transform.position = Vector2.MoveTowards(bird.transform.position, flu, Time.deltaTime*birdSpeed);
+                bird.transform.position = Vector2.MoveTowards(bird.transform.position, flu, Time.deltaTime * birdSpeed);
                 yield return null;
             }
             Destroy(bird);
@@ -84,32 +89,33 @@ public class World : MonoBehaviour {
     void SoldierInst()
     {
         Vector2 pos = spawn1.position;
-        GameObject sold = Instantiate(solduer,pos,Quaternion.identity,GameObject.Find("Enemies").transform);
+        GameObject sold = Instantiate(solduer, pos, Quaternion.identity, GameObject.Find("Enemies").transform);
         bool j = false;
-        
-        StartCoroutine(timer(Random.Range(1,5), j));
-            StartCoroutine(soldier(sold));//1 
+
+        StartCoroutine(timer(Random.Range(1, 5), j));
+        StartCoroutine(soldier(sold));//1 
         pos = spawn2.position;
         sold = Instantiate(solduer, pos, Quaternion.identity, GameObject.Find("Enemies").transform);
         j = false;
         StartCoroutine(timer(Random.Range(1, 5), j));
-            StartCoroutine(soldier(sold));//2       
+        StartCoroutine(soldier(sold));//2       
     }
 
-    IEnumerator timer(int col,bool j) {
+    IEnumerator timer(int col, bool j)
+    {
         for (int i = 0; i < col; i++)
         {
-          yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1);
         }
         j = true;
     }
 
     public IEnumerator soldier(GameObject sold)
     {
-        Vector2 target = sold.transform.position ;
+        Vector2 target = sold.transform.position;
         for (; ; )
         {
-            if (sold.GetComponent<Enemy>().hp==0)
+            if (sold.GetComponent<Enemy>().hp == 0)
             {
                 Destroy(sold);
                 yield break;
@@ -135,7 +141,7 @@ public class World : MonoBehaviour {
             }
             else if (sold.transform.localScale.x < 0)
             {
-                if (sold.transform.position.x > (GameObject.Find("Player").transform.position.x + 10* -sold.transform.localScale.x))
+                if (sold.transform.position.x > (GameObject.Find("Player").transform.position.x + 10 * -sold.transform.localScale.x))
                 {
                     sold.GetComponent<Animator>().SetInteger("Do", 2);
                     target.x = GameObject.Find("Player").transform.position.x;
@@ -147,14 +153,14 @@ public class World : MonoBehaviour {
                     for (int i = 0; i < 2; i++)
                     {
                         sold.GetComponent<Animator>().SetInteger("Do", 1);
-                       yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.5f);
                     }
                     sold.GetComponent<Animator>().SetInteger("Do", 0);
 
-                    yield return new WaitForSeconds(Random.Range(firetime,firetime+4));
+                    yield return new WaitForSeconds(Random.Range(firetime, firetime + 4));
                 }
-            }      
-        }          
+            }
+        }
     }
 
 

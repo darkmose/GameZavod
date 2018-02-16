@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeWeather : MonoBehaviour {
+public class ChangeWeather : MonoBehaviour
+{
     public GameObject snow, rain, normal;
     public void Snow()
     {

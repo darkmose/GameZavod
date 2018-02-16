@@ -17,6 +17,14 @@ public class Trigger_0 : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+        if (collision.gameObject.tag == "help")
+        {
+            scrpt.healthPl++;
+            scrpt.healthPlus.text = scrpt.healthPl.ToString();
+            Destroy(collision.gameObject);
+        }
+
         if (collision.collider.tag == "Item")
         {
             count = GameObject.Find("GlobalScripts").GetComponent<Inventory>().ItemsCount();
@@ -36,8 +44,7 @@ public class Trigger_0 : MonoBehaviour
             world.coins++;
             GameObject.Find("GlobalScripts").GetComponent<Inventory>().textinv.text = System.Convert.ToString(world.coins);
             GameObject.Find("GlobalScripts").GetComponent<Inventory>().textinvs.text = System.Convert.ToString(world.coins);
-            GetComponent<AudioSource>().clip = GetComponent<HelpPlayer>().coins;
-            GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().PlayOneShot(GetComponent<HelpPlayer>().coins);
             Destroy(collision.collider.gameObject);
    
 

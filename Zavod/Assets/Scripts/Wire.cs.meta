@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e96fc7b42795b264598a125fb1f4259c
+timeCreated: 1518625649
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - wirePrefab: {fileID: 1726453504367140, guid: 307f391a875d59249895596fd0e3bea1,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

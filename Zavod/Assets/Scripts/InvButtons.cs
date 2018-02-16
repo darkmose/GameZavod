@@ -10,19 +10,23 @@ public class InvButtons : MonoBehaviour {
     string PathPopup;
     GameObject popap;
     Button[] menu;
-    string[] menuname = new string[3];
+    string[] menuname = new string[2];
+
+    [HideInInspector]
     public bool isEvent,isEndAnimButton;
     Inventory inventorrrrry;
     HelpPlayer player;
     Text dmg, armr;
+    float colliderXradius;
 
     private void Start()
-    {
+    {   
+        
         dmg = GameObject.Find("StatsOnScreen").transform.GetChild(0).GetComponent<Text>();
         armr = GameObject.Find("StatsOnScreen").transform.GetChild(1).GetComponent<Text>();
         player = GameObject.Find("Player").GetComponent<HelpPlayer>();
-        
-        menu = new Button[3];
+        colliderXradius = 1.11f;
+        menu = new Button[2];
         isEndAnimButton = false;
         inventorrrrry = GameObject.Find("GlobalScripts").GetComponent<Inventory>();
         isEvent = false;
@@ -39,13 +43,10 @@ public class InvButtons : MonoBehaviour {
         if (cell.transform.parent == inventorrrrry.getInvTransform())
         {
             menuname[0] = "Equip";
-            menuname[1] = "To HotBar";
-            menuname[2] = "Throw Out";
+            menuname[1] = "Throw Out";
         }
         else
         {
-            menu = new Button[2];
-            menuname = new string[2];
             menuname[0] = "Unequip";
             menuname[1] = "ThrowOut";
         }
@@ -71,7 +72,7 @@ public class InvButtons : MonoBehaviour {
             menu[i].GetComponentInChildren<Text>().text = menuname[i]; 
             yield return StartCoroutine(TextSize(i));
         }
-        if (menu.Length==2)
+        if (cell.transform.parent != inventorrrrry.getInvTransform())
         {
             menu[0].onClick.AddListener(UnEquip);
             menu[1].onClick.AddListener(Remove);
@@ -79,8 +80,7 @@ public class InvButtons : MonoBehaviour {
         else
         {
             menu[0].onClick.AddListener(Equip);
-            menu[1].onClick.AddListener(HotBar);
-            menu[2].onClick.AddListener(Remove);
+            menu[1].onClick.AddListener(Remove);
         }
         isEndAnimButton = true;
     }
@@ -97,22 +97,6 @@ public class InvButtons : MonoBehaviour {
                Destroy(popap);
                isEvent = false;
             }
-    }
-
-    void HotBar() {
-        inventorrrrry.hotbar.Add(cell.GetComponentInChildren<HelperItems>().it);
-        {
-            Destroy(popap);
-            isEvent = false;
-        }
-        inventorrrrry.HelperBarOpen();
-    }
-    void HotBar(Item item) {
-        inventorrrrry.hotbar.Add(item);
-        inventorrrrry.HelperBarOpen();
-    }
-    void HotBarDel(Item item) {
-        inventorrrrry.hotbar.Remove(item);
     }
 
     void ItemBack(int i) {
@@ -164,15 +148,29 @@ public class InvButtons : MonoBehaviour {
 
     void Equip()
     {
-        if (cell.GetComponentInChildren<HelperItems>().type == "hands")
+        if (cell.GetComponentInChildren<HelperItems>().type == "hands" || cell.GetComponentInChildren<HelperItems>().type == "instrument")
         {
             HandHelper(cell.GetComponentInChildren<HelperItems>().sprite,cell.GetComponentInChildren<HelperItems>());
             InCellArmorHelper(5);
-            player.damage = 5 + cell.GetComponentInChildren<HelperItems>().damage;
-            dmg.text = player.damage.ToString();        
-            inventorrrrry.HelperInvOpen();
-            inventorrrrry.HelperArmorOpen();
-            inventorrrrry.HelperBarOpen();
+
+            if (inventorrrrry.armor[4].GunDamage != 0)
+            {
+                player.damage = 5 + cell.GetComponentInChildren<HelperItems>().GunDamage;
+                dmg.text = cell.GetComponentInChildren<HelperItems>().GunDamage.ToString();
+                inventorrrrry.isShooting = true;
+                player.transform.GetChild(0).GetComponent<CapsuleCollider2D>().size = new Vector2(colliderXradius, 2.11f);
+            }
+            else
+            {
+                player.damage = 5 + cell.GetComponentInChildren<HelperItems>().damage;
+                dmg.text = player.damage.ToString();
+                inventorrrrry.isShooting = false;
+                player.transform.GetChild(0).GetComponent<CapsuleCollider2D>().size = new Vector2(colliderXradius + cell.GetComponentInChildren<HelperItems>().handRadius,2.11f);
+            }
+
+
+          inventorrrrry.HelperInvOpen();
+          inventorrrrry.HelperArmorOpen();
         }
         else if (cell.GetComponentInChildren<HelperItems>().type == "legs")
         {
@@ -188,10 +186,13 @@ public class InvButtons : MonoBehaviour {
         {
             if (cell.GetComponentInChildren<HelperItems>().type == "hands")
             {
+                player.transform.GetChild(0).GetComponent<CapsuleCollider2D>().size = new Vector2(colliderXradius, 2.11f);
+                player.damage = 5;
                 Destroy(inventorrrrry.rhand.GetChild(0).gameObject);
                 inventorrrrry.armor[4] = null;
                 inventorrrrry.items.Add(cell.GetComponentInChildren<HelperItems>().it);
                 Destroy(cell.transform.GetChild(0).gameObject);
+                inventorrrrry.isShooting = false;
             }
             else if (cell.GetComponentInChildren<HelperItems>().type == "legs")
             {
@@ -203,7 +204,6 @@ public class InvButtons : MonoBehaviour {
             }
             inventorrrrry.HelperInvOpen();
             inventorrrrry.HelperArmorOpen();
-            inventorrrrry.HelperBarOpen();
         }
     }
 

@@ -15,6 +15,12 @@ public class Item : MonoBehaviour
     public int bullets;
     public int healthPlus;
     public string descr;
+    [HideInInspector]
+    public int AllAmmo;
+    [HideInInspector]
+    public int AmmoCurOne;
+
+    public int AmmoInOne;
     public Vector2 handPos;
     public Vector3 handAngle;
     Animator animato;
@@ -27,7 +33,7 @@ public class Item : MonoBehaviour
         animato = sprite1.AddComponent<Animator>();
         animato.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("animation/drop");
         rigi = this.gameObject.AddComponent<Rigidbody2D>();
-        rigi.gravityScale = 5f;       
+        rigi.gravityScale = 5f;
 	}
 
 }

@@ -311,24 +311,32 @@
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
     <Compile Include="Assets\Scripts\CamMove.cs" />
+    <Compile Include="Assets\Scripts\Capsule.cs" />
     <Compile Include="Assets\Scripts\ChangeWeather.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\FlyHelp.cs" />
+    <Compile Include="Assets\Scripts\Generator.cs" />
     <Compile Include="Assets\Scripts\HelpClick.cs" />
     <Compile Include="Assets\Scripts\HelperItems.cs" />
     <Compile Include="Assets\Scripts\HelpPlayer.cs" />
+    <Compile Include="Assets\Scripts\Hints.cs" />
+    <Compile Include="Assets\Scripts\InputIO.cs" />
     <Compile Include="Assets\Scripts\InvButtons.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\Levels.cs" />
+    <Compile Include="Assets\Scripts\Mechanism.cs" />
     <Compile Include="Assets\Scripts\MenuButton.cs" />
+    <Compile Include="Assets\Scripts\MouseSystem.cs" />
     <Compile Include="Assets\Scripts\Move.cs" />
     <Compile Include="Assets\Scripts\Particle.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
-    <Compile Include="Assets\Scripts\Player2.cs" />
     <Compile Include="Assets\Scripts\popHelp.cs" />
+    <Compile Include="Assets\Scripts\Shooting.cs" />
     <Compile Include="Assets\Scripts\ShopMenu.cs" />
+    <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\Trigger_0.cs" />
+    <Compile Include="Assets\Scripts\Wire.cs" />
     <Compile Include="Assets\Scripts\World.cs" />
   </ItemGroup>
   <ItemGroup>

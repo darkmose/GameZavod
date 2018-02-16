@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class HelpPlayer : MonoBehaviour {
+public class HelpPlayer : MonoBehaviour
+{
     public int maxHealth = 100;
     public int maxEnergy = 100;
     public int energy = 100;
@@ -12,6 +13,7 @@ public class HelpPlayer : MonoBehaviour {
     public AudioClip[] move;
     public AudioClip coins;
     public AudioClip[] attack;
+
 
     [SerializeField]
     private RectTransform barHp, barEn;
@@ -43,10 +45,6 @@ public class HelpPlayer : MonoBehaviour {
         barEn.offsetMax = new Vector2(value, 0f);
     }
 
-    public void AttackDamage(GameObject enemy)
-    {
-        enemy.GetComponent<Enemy>().hp = Mathf.Clamp(enemy.GetComponent<Enemy>().hp - damage, 0, enemy.GetComponent<Enemy>().maxhp);
-    }
 
 
     public void EnergyAdd(int count)
@@ -73,26 +71,42 @@ public class HelpPlayer : MonoBehaviour {
         corotin = true;
     }
 
-    void Die() {
-        gameObject.GetComponent<Animator>().Play("RobotDie");    
+    void Die()
+    {
+        gameObject.GetComponent<Animator>().Play("RobotDie");
     }
-    void Respawn() {
+    void Respawn()
+    {
         gameObject.transform.position = GameObject.Find("GlobalScripts").transform.GetChild(0).position;
         gameObject.GetComponent<Animator>().Play("RobotRespawn");
     }
 
-    void SetMove() {
+    void SetMove()
+    {
         gameObject.GetComponent<Move>().move = !gameObject.GetComponent<Move>().move;
     }
-    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {     
+    {
         if (collision.tag == "takeDamage")
         {
             Destroy(collision.gameObject);
             GetComponent<Animator>().Play("RobotDamage");
             HpAdd(-5);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.H))
+        {
+            if (GameObject.Find("GlobalScripts").GetComponent<Inventory>().healthPl > 0)
+            {
+                HpAdd(25);
+                GameObject.Find("GlobalScripts").GetComponent<Inventory>().healthPl--;
+                GameObject.Find("GlobalScripts").GetComponent<Inventory>().healthPlus.text = GameObject.Find("GlobalScripts").GetComponent<Inventory>().healthPl.ToString();
+            }
         }
     }
 
@@ -115,9 +129,10 @@ public class HelpPlayer : MonoBehaviour {
 
         }
 
-        if (health==0)
+        if (health == 0)
         {
             Die();
         }
     }
+
 }
