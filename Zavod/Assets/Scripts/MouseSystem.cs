@@ -19,29 +19,33 @@ public class MouseSystem : MonoBehaviour
 
     void ChekIO()
     {
-
-        if (Input.GetMouseButtonUp(0) && !isWireSet && GameObject.Find("GlobalScripts").GetComponent<Inventory>().armor[4].type == "instrument")
+        try
         {
-            if (!GameObject.Find("GlobalScripts").GetComponent<Inventory>().isShooting)
+            if (Input.GetMouseButtonUp(0) && !isWireSet && GameObject.Find("GlobalScripts").GetComponent<Inventory>().armor[4].type == "instrument")
             {
-                RaycastHit2D hit = Physics2D.Raycast((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Camera.main.transform.forward, 4f, mask);
-
-                try
+                if (!GameObject.Find("GlobalScripts").GetComponent<Inventory>().isShooting)
                 {
-                    if (hit.collider.CompareTag("WireIO") && hit.collider.GetComponent<InputIO>().connects == 0)
+                    RaycastHit2D hit = Physics2D.Raycast((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Camera.main.transform.forward, 4f, mask);
                     {
-                        CurrentIO = hit.collider.gameObject;
-                        newWire = Instantiate(wire, Vector2.zero, Quaternion.identity, GameObject.Find("Wires").transform);
-                        newWire.GetComponent<Wire>().OutPut = hit.collider.gameObject;
-                        newWire.GetComponent<Wire>().side = (hit.collider.gameObject.transform.localPosition.x > 0) ? "right" : "left";
-                        isWireSet = true;
+                        if (hit.collider.CompareTag("WireIO") && hit.collider.GetComponent<InputIO>().connects == 0)
+                        {
+                            CurrentIO = hit.collider.gameObject;
+                            newWire = Instantiate(wire, Vector2.zero, Quaternion.identity, GameObject.Find("Wires").transform);
+                            newWire.GetComponent<Wire>().OutPut = hit.collider.gameObject;
+                            newWire.GetComponent<Wire>().side = (hit.collider.gameObject.transform.localPosition.x > 0) ? "right" : "left";
+                            isWireSet = true;
+                        }
                     }
+
                 }
-                finally{}
+
             }
 
         }
+        catch (System.NullReferenceException)
+        {
 
+        }
     }
 
     private void Connect()
@@ -59,16 +63,22 @@ public class MouseSystem : MonoBehaviour
                         {
                             newWire.GetComponent<Wire>().InPut = hit.collider.gameObject;
                             newWire.GetComponent<Wire>().StopWire();
-                            newWire = null;
-                            isWireSet = false;
                             hit.collider.GetComponent<InputIO>().connects++;
                             hit.collider.GetComponent<InputIO>().connectClient = CurrentIO;
                             CurrentIO.GetComponent<InputIO>().connects++;
                             CurrentIO.GetComponent<InputIO>().connectClient = hit.collider.gameObject;
+                            hit.collider.transform.parent.GetComponent<Mechanism>().IsConnected = true;
+                            CurrentIO.transform.parent.GetComponent<Mechanism>().IsConnected = true;
+                            hit.collider.GetComponent<InputIO>().WireRef = newWire;
+                            CurrentIO.GetComponent<InputIO>().WireRef = newWire;
+                            newWire = null;
+                            isWireSet = false;
                         }
                     }
                 }
-                finally{}                
+                catch (System.NullReferenceException)
+                {
+                }
             }
         }
     }

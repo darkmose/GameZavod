@@ -8,6 +8,7 @@ public class Generator : Mechanism
     InputIO input;
     bool translateEnergy = true;
     public bool stopTranslate = true;
+    
     Mechanism mech;
 
     void Start()
@@ -19,60 +20,62 @@ public class Generator : Mechanism
         AlignObjects = new GameObject[InputCount];
         AlignObjects[0] = transform.GetChild(0).gameObject;
         input = AlignObjects[0].GetComponent<InputIO>();
+        IsConnected = false;
     }
 
 
     void EnergyOut()
     {
-        if (translateEnergy && !stopTranslate)
+        if (IsConnected)
         {
-            mech = input.connectClient.transform.parent.GetComponent<Mechanism>();
+            if (translateEnergy && !stopTranslate)
+            {
+                mech = input.connectClient.transform.parent.GetComponent<Mechanism>();
 
-            if (mech.EnergyCurrent < mech.EnergyCell)
-            {
-                mech.EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + mech.EnergyCurrent, 0, mech.EnergyCell);
-                print("Client energy  " + mech.EnergyCurrent);
-            }
-            else
-            {
-                if (EnergyCurrent < EnergyCell)
+                if (mech.EnergyCurrent < mech.EnergyCell)
                 {
-                    translateEnergy = false;
+                    mech.EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + mech.EnergyCurrent, 0, mech.EnergyCell);
+                    print("Client energy  " + mech.EnergyCurrent);
+                }
+                else
+                {
+                    if (EnergyCurrent < EnergyCell)
+                    {
+                        translateEnergy = false;
+                    }
+                    else
+                    {
+                        stopTranslate = true;
+                    }
+                }
+            }
+            if (!translateEnergy && !stopTranslate)
+            {
+                if (EnergyCurrent < 100)
+                {
+                    EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + EnergyCurrent, 0, EnergyCell);
+                    print("Self energy  " + EnergyCurrent);
                 }
                 else
                 {
                     stopTranslate = true;
                 }
             }
-        }
-        if (!translateEnergy && !stopTranslate)
-        {
-            if (EnergyCurrent < 100)
+            if (mech.EnergyCurrent < mech.EnergyCell)
             {
-                EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + EnergyCurrent, 0, EnergyCell);
-                print("Self energy  " + EnergyCurrent);
+                stopTranslate = false;
+                translateEnergy = true;
             }
-            else
+            else if (EnergyCurrent < EnergyCell)
             {
-                stopTranslate = true;
+                stopTranslate = false;
+                translateEnergy = false;
             }
         }
-        if (mech.EnergyCurrent < mech.EnergyCell)
-        {
-            stopTranslate = false;
-            translateEnergy = true;
-        }
-        else if (EnergyCurrent < EnergyCell)
-        {
-            stopTranslate = false;
-            translateEnergy = false;
-        }
-
-
     }
 
     void Update()
     {
-       EnergyOut();
+        EnergyOut();
     }
 }

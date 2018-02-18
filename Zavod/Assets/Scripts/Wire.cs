@@ -51,6 +51,8 @@ public class Wire : MonoBehaviour
         this.gameObject.isStatic = true;
     }
 
+
+
     void CheckWire()
     {
         if (GameObject.Find("Main Camera").GetComponent<MouseSystem>().isWireSet)
@@ -93,6 +95,6 @@ public class Wire : MonoBehaviour
 
     void FixedUpdate()
     {
-        CheckWire();
+               
     }
 }

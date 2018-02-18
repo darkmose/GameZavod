@@ -9,5 +9,6 @@ public class Mechanism : MonoBehaviour
     protected GameObject[] AlignObjects { get; set; }
     public float EnergyCell { get; set; }
     public float EnergyCurrent { get; set; }
+    public bool IsConnected { get; set; }
 }
 

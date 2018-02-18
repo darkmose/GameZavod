@@ -59,7 +59,10 @@ public class Shooting : MonoBehaviour
     }
 
 
-
+    private void OnDrawGizmosSelected()
+    {
+        
+    }
 
     void Shoot()
     {
@@ -68,6 +71,7 @@ public class Shooting : MonoBehaviour
             if (currentAmmo > 0 && reload <= 0 && shootTime <= 0)
             {
                 animator.Play("RobotShooting", 1);
+
                 try
                 {
                     RaycastHit2D hit = Physics2D.Raycast(GameObject.Find("Player").transform.position, (target.transform.position + transform.up * 0.35f) - GameObject.Find("Player").transform.position, 100f, layer);
@@ -77,6 +81,9 @@ public class Shooting : MonoBehaviour
                             hit.collider.gameObject.GetComponent<Enemy>().TakeDamageFunc(0.05f);
                         }
                     }
+                }
+                catch (System.NullReferenceException)
+                {
                 }
                 finally
                 {
