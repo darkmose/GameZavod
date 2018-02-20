@@ -29,7 +29,12 @@ public class InputIO : MonoBehaviour {
                     if (WireRef.isStatic)
                     {
                         Destroy(WireRef);
+                        connectClient.transform.parent.GetComponent<Mechanism>().IsConnected = false;
+                        connectClient.GetComponent<InputIO>().connects = 0;
+                        connectClient.GetComponent<InputIO>().connectClient = null;
+                        transform.parent.GetComponent<Mechanism>().IsConnected = false;
                         connects = 0;
+                        connectClient = null;
 
                     }
                 }

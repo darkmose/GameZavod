@@ -16,7 +16,6 @@ public class World : MonoBehaviour
     public Transform spawn1, spawn2;
     public GameObject solduer;
     public float speedSoldier = 5f;
-    Timer settimer = new Timer();
 
     public int firetime = 3;
 

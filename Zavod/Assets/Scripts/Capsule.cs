@@ -7,6 +7,7 @@ public class Capsule : Mechanism
 
     InputIO[] io;
     public bool isOpen;
+    public bool playerInside;
 
     void Start()
     {
@@ -17,26 +18,63 @@ public class Capsule : Mechanism
         EnergyCurrent = 0;
         io[0] = transform.GetChild(0).GetComponent<InputIO>();
 
+        #region PlayerPrefs---PlayerInCapsule
+        if (PlayerPrefs.HasKey("CapsulePlayerState"))
+        {
+            playerInside = (PlayerPrefs.GetInt("CapsulePlayerState") == 0) ? false : true;
+        }
+        else
+        {
+            playerInside = false;
+            PlayerPrefs.SetInt("CapsuleState", 0);
+        }
+        #endregion
+
+        #region PlayerPrefs---IsCapsuleOpen
         if (PlayerPrefs.HasKey("CapsuleState"))
         {
             isOpen = (PlayerPrefs.GetInt("CapsuleState") == 0) ? false : true;
         }
         else
         {
-            isOpen = false;
+            playerInside = false;
             PlayerPrefs.SetInt("CapsuleState", 0);
         }
+        #endregion
 
-        if (isOpen)
+        if (!playerInside)
         {
-            GetComponent<Animator>().Play("CapsuleOpen");
+            SetLayerName("Default");
+            transform.GetChild(5).gameObject.SetActive(false);
         }
         else
         {
-            GetComponent<Animator>().Play("CapsuleClose");
+            SetLayerName("SoldierLayer");
+            transform.GetChild(5).gameObject.SetActive(true);
+        }
+
+
+
+        if (isOpen)
+        {
+            transform.GetChild(1).localPosition = new Vector2(0, 3.2f);
+            transform.GetChild(1).localRotation = Quaternion.Euler(0, 0, 180);
+        }
+        else
+        {
+            transform.GetChild(1).localPosition = new Vector2(0, 0.562f);
+            transform.GetChild(1).localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
+
+    public void SetLayerName(string name)
+    {
+        transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = name;
+        transform.GetChild(1).GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = name;
+        transform.GetChild(1).GetChild(1).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = name;
+        transform.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = name;
+    }
 
     public void OpenClose()
     {
@@ -44,13 +82,25 @@ public class Capsule : Mechanism
         {
             GetComponent<Animator>().Play("CapsuleOpen");
             isOpen = true;
+
+            transform.GetChild(5).gameObject.SetActive(true);
+
+            if (playerInside)
+            {
+                GameObject.Find("Player").GetComponent<Move>().move = true;
+            }
         }
         else
         {
             GetComponent<Animator>().Play("CapsuleClose");
             isOpen = false;
-        }
 
+            if (playerInside)
+            {
+                GameObject.Find("Player").GetComponent<Move>().move = false;
+            }
+            else transform.GetChild(5).gameObject.SetActive(false);
+        }
     }
 
 

@@ -240,7 +240,12 @@ public class InvButtons : MonoBehaviour {
         }
     }
 
-    
-   
+
+    private void Update()
+    {
+
+    }
+
+
 
 }

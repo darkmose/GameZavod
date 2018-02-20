@@ -8,7 +8,7 @@ public class Move : MonoBehaviour
     GameObject gmo;
     Animator animar;
     Rigidbody2D rig;
-    bool flag = true;
+    public bool flag = true;
     bool isAttack = false;
     bool inAir = false;
     bool run = true;

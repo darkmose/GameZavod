@@ -28,6 +28,9 @@ public class Generator : Mechanism
     {
         if (IsConnected)
         {
+            input.connectClient.transform.parent.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            input.connectClient.transform.parent.GetChild(1).GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
             if (translateEnergy && !stopTranslate)
             {
                 mech = input.connectClient.transform.parent.GetComponent<Mechanism>();
@@ -70,6 +73,20 @@ public class Generator : Mechanism
             {
                 stopTranslate = false;
                 translateEnergy = false;
+            }
+        }
+        else
+        {
+            try
+            {
+                input.connectClient.transform.parent.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                input.connectClient.transform.parent.GetChild(1).GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            catch (System.NullReferenceException)
+            {
+            }
+            catch (UnassignedReferenceException)
+            {
             }
         }
     }

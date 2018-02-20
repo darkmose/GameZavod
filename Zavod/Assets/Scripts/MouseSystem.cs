@@ -27,7 +27,7 @@ public class MouseSystem : MonoBehaviour
                 {
                     RaycastHit2D hit = Physics2D.Raycast((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Camera.main.transform.forward, 4f, mask);
                     {
-                        if (hit.collider.CompareTag("WireIO") && hit.collider.GetComponent<InputIO>().connects == 0)
+                        if (hit.collider.CompareTag("WireIO") && hit.collider.GetComponent<InputIO>().connects == 0 && Vector2.Distance(GameObject.Find("Player").transform.position, hit.collider.transform.position) < 5f)
                         {
                             CurrentIO = hit.collider.gameObject;
                             newWire = Instantiate(wire, Vector2.zero, Quaternion.identity, GameObject.Find("Wires").transform);
@@ -57,7 +57,7 @@ public class MouseSystem : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Camera.main.transform.forward, 4f, mask);
                 try
                 {
-                    if (hit.collider.CompareTag("WireIO") && hit.collider.GetComponent<InputIO>().connects == 0)
+                    if (hit.collider.CompareTag("WireIO") && hit.collider.GetComponent<InputIO>().connects == 0 && Vector2.Distance(GameObject.Find("Player").transform.position, hit.collider.transform.position) < 5f)
                     {
                         if (hit.collider.gameObject != CurrentIO)
                         {
@@ -84,9 +84,42 @@ public class MouseSystem : MonoBehaviour
     }
 
 
+    void ClimbCapsule()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            try
+            {
+                if (Vector2.Distance(GameObject.Find("Player").transform.position, GameObject.Find("Capsule").transform.position) < 4f)
+                {
+                    RaycastHit2D hit = Physics2D.Raycast((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Camera.main.transform.forward, 4, mask);
+
+                    if (hit.collider.name == "CheckPlayerCapsule")
+                    {
+                        if (hit.collider.transform.parent.GetComponent<Capsule>().isOpen)
+                        {
+                            GameObject.Find("Player").transform.position = hit.collider.transform.parent.position;
+                            GameObject.Find("Capsule").GetComponent<Capsule>().playerInside = true;
+                            PlayerPrefs.SetInt("CapsulePlayerState", 1);
+                            GameObject.Find("Player").GetComponent<Rigidbody2D>().isKinematic = true;
+                            GameObject.Find("Player").GetComponent<Move>().flag = false;
+                            hit.collider.transform.parent.GetComponent<Capsule>().SetLayerName("SoldierLayer");
+                        }
+                    }
+                }
+
+            }
+            catch (System.NullReferenceException)
+            {
+            }
+        }
+    }
+
+
     void Update()
     {
         ChekIO();
         Connect();
+        ClimbCapsule();
     }
 }

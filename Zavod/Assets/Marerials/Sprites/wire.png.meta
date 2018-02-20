@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 097a6852a76a17a409668c14b0568336
-timeCreated: 1518622441
+guid: 92c11e3161e8c82479a923f19af03221
+timeCreated: 1519154047
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -9,7 +9,7 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
-    sRGBTexture: 0
+    sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -31,7 +31,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -1
     wrapU: 0
@@ -42,10 +42,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 3, z: 0, w: 4}
+  spriteBorder: {x: 0, y: 1, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -89,8 +89,16 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
-    physicsShape: []
+    outline:
+    - - {x: -28, y: 23}
+      - {x: -28, y: -23}
+      - {x: 28, y: -23}
+      - {x: 28, y: 23}
+    physicsShape:
+    - - {x: -28, y: 23}
+      - {x: -28, y: -23}
+      - {x: 28, y: -23}
+      - {x: 28, y: 23}
   spritePackingTag: 
   userData: 
   assetBundleName: 

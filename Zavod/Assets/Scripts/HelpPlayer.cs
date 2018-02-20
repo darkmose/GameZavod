@@ -97,6 +97,24 @@ public class HelpPlayer : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        try
+        {
+            if (collision.name == "CheckPlayerCapsule")
+            {
+                GameObject.Find("Capsule").GetComponent<Capsule>().playerInside = false;
+                PlayerPrefs.SetInt("CapsulePlayerState", 0);
+                GetComponent<Rigidbody2D>().isKinematic = false;
+                GameObject.Find("Player").GetComponent<Move>().flag = true;
+                collision.transform.parent.GetComponent<Capsule>().SetLayerName("Default");
+            }
+        }
+        catch (UnityEngine.Assertions.AssertionException)
+        {            
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.H))
@@ -107,6 +125,12 @@ public class HelpPlayer : MonoBehaviour
                 GameObject.Find("GlobalScripts").GetComponent<Inventory>().healthPl--;
                 GameObject.Find("GlobalScripts").GetComponent<Inventory>().healthPlus.text = GameObject.Find("GlobalScripts").GetComponent<Inventory>().healthPl.ToString();
             }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            GameObject a = Instantiate(Resources.Load<GameObject>("prefabs/Test/Generator"));
+            a.AddComponent<ScrewMachines>();
         }
     }
 

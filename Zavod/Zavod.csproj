@@ -332,6 +332,7 @@
     <Compile Include="Assets\Scripts\Particle.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\popHelp.cs" />
+    <Compile Include="Assets\Scripts\ScrewMachines.cs" />
     <Compile Include="Assets\Scripts\Shooting.cs" />
     <Compile Include="Assets\Scripts\ShopMenu.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />

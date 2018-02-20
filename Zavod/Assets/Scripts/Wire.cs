@@ -52,26 +52,6 @@ public class Wire : MonoBehaviour
     }
 
 
-
-    void CheckWire()
-    {
-        if (GameObject.Find("Main Camera").GetComponent<MouseSystem>().isWireSet)
-        {
-            currentLine = line.positionCount - 1;
-
-            if (Vector2.Distance((Vector2)line.GetPosition(currentLine), (Vector2)line.GetPosition(currentLine - 1)) > 2f && line.positionCount >= 2)
-            {
-                if ((Vector2)line.GetPosition(currentLine) != Vector2.zero)
-                {
-                    line.positionCount++;
-                }
-
-            }
-
-        }
-
-    }
-
     void GotoCurrent()
     {
         if (GameObject.Find("Main Camera").GetComponent<MouseSystem>().isWireSet)
