@@ -218,7 +218,7 @@ public class Inventory : MonoBehaviour
 
         if (!isInv && Input.GetButtonDown("Inventory") && !GameObject.Find("GlobalScripts").GetComponent<PauseMenu>().isPause && !creator.activeSelf)
         {
-            GameObject.Find("Player").GetComponent<Move>().move = false;
+            player.GetComponent<Move>().move = false;
             HelperInvOpen();
             HelperArmorOpen();
             shoot.SetActive(false);
@@ -227,7 +227,7 @@ public class Inventory : MonoBehaviour
         {
             HelperInvClose();
             HelperArmorClose();
-            GameObject.Find("Player").GetComponent<Move>().move = true;
+            player.GetComponent<Move>().move = true;
             if (isShooting)
             {
                 shoot.SetActive(true);
@@ -254,8 +254,10 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-
-        ShowInventory();
+        if (!player.GetComponent<Move>().isAttack)
+        {
+            ShowInventory();
+        }
         if (Input.GetKeyDown(KeyCode.W))
         {
             showWeather();

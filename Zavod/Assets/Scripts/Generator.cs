@@ -6,9 +6,10 @@ public class Generator : Mechanism
 {
     public float energPerFrame = 1f;
     InputIO input;
-    bool translateEnergy = true;
+    public bool translateEnergy = true;
     public bool stopTranslate = true;
-    
+    public float fuel = 0f;
+
     Mechanism mech;
 
     void Start()
@@ -26,11 +27,9 @@ public class Generator : Mechanism
 
     void EnergyOut()
     {
-        if (IsConnected)
+        if (IsConnected && fuel > 0.00001f && input.connectClient.transform.parent.gameObject.name == "Capsule")
         {
-            input.connectClient.transform.parent.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            input.connectClient.transform.parent.GetChild(1).GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-
+            GetComponent<Animator>().SetBool("On", true);
             if (translateEnergy && !stopTranslate)
             {
                 mech = input.connectClient.transform.parent.GetComponent<Mechanism>();
@@ -38,7 +37,9 @@ public class Generator : Mechanism
                 if (mech.EnergyCurrent < mech.EnergyCell)
                 {
                     mech.EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + mech.EnergyCurrent, 0, mech.EnergyCell);
+                    fuel -= Time.deltaTime;
                     print("Client energy  " + mech.EnergyCurrent);
+                    print("Current fuel  " + fuel);
                 }
                 else
                 {
@@ -52,11 +53,12 @@ public class Generator : Mechanism
                     }
                 }
             }
-            if (!translateEnergy && !stopTranslate)
+            else if (!translateEnergy && !stopTranslate)
             {
                 if (EnergyCurrent < 100)
                 {
                     EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + EnergyCurrent, 0, EnergyCell);
+                    fuel -= Time.deltaTime;
                     print("Self energy  " + EnergyCurrent);
                 }
                 else
@@ -64,35 +66,36 @@ public class Generator : Mechanism
                     stopTranslate = true;
                 }
             }
+
+            if (EnergyCurrent < EnergyCell)
+            {
+                stopTranslate = false;
+                translateEnergy = false;
+            }
             if (mech.EnergyCurrent < mech.EnergyCell)
             {
                 stopTranslate = false;
                 translateEnergy = true;
             }
-            else if (EnergyCurrent < EnergyCell)
-            {
-                stopTranslate = false;
-                translateEnergy = false;
-            }
         }
         else
         {
-            try
-            {
-                input.connectClient.transform.parent.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                input.connectClient.transform.parent.GetChild(1).GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            }
-            catch (System.NullReferenceException)
-            {
-            }
-            catch (UnassignedReferenceException)
-            {
-            }
+            stopTranslate = false;
+            GetComponent<Animator>().SetBool("On", false);
         }
+    }
+
+    void AddFuel(int count)
+    {
+        fuel = Mathf.Clamp(fuel + count, 0, 1000);
     }
 
     void Update()
     {
         EnergyOut();
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            AddFuel(3);
+        }
     }
 }

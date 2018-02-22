@@ -35,7 +35,6 @@ public class InputIO : MonoBehaviour {
                         transform.parent.GetComponent<Mechanism>().IsConnected = false;
                         connects = 0;
                         connectClient = null;
-
                     }
                 }
             }

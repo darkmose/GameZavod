@@ -20,6 +20,8 @@ public class Shooting : MonoBehaviour
     public AudioClip reloadSound;
     float reload = 0.0f, reloadSpeed = 1f, shootTime = 0.0f, shootSpeed;
     int currentAmmo, AmmoInOne, AllAmmo;
+    [HideInInspector]
+    public bool canShoot=true;
 
 
 
@@ -36,6 +38,7 @@ public class Shooting : MonoBehaviour
 
     private void OnEnable()
     {
+        canShoot = true;
         shootSpeed = 7 / inv.armor[4].speed;
         AllAmmo = inv.armor[4].AllAmmo;
         currentAmmo = inv.armor[4].AmmoCurOne;

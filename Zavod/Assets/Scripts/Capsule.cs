@@ -8,6 +8,7 @@ public class Capsule : Mechanism
     InputIO[] io;
     public bool isOpen;
     public bool playerInside;
+    bool canOpClose = true;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class Capsule : Mechanism
         EnergyCell = 10000f;
         EnergyCurrent = 0;
         io[0] = transform.GetChild(0).GetComponent<InputIO>();
+        IsConnected = false;
 
         #region PlayerPrefs---PlayerInCapsule
         if (PlayerPrefs.HasKey("CapsulePlayerState"))
@@ -78,36 +80,86 @@ public class Capsule : Mechanism
 
     public void OpenClose()
     {
-        if (!isOpen)
+        if (canOpClose)
         {
-            GetComponent<Animator>().Play("CapsuleOpen");
-            isOpen = true;
-
-            transform.GetChild(5).gameObject.SetActive(true);
-
-            if (playerInside)
+            if (!isOpen)
             {
-                GameObject.Find("Player").GetComponent<Move>().move = true;
-            }
-        }
-        else
-        {
-            GetComponent<Animator>().Play("CapsuleClose");
-            isOpen = false;
+                GetComponent<Animator>().Play("CapsuleOpen");
+                isOpen = true;
 
-            if (playerInside)
-            {
-                GameObject.Find("Player").GetComponent<Move>().move = false;
+                transform.GetChild(5).gameObject.SetActive(true);
+
+                if (playerInside)
+                {
+                    GameObject.Find("Player").GetComponent<Move>().move = true;
+                    try
+                    {
+                        GameObject.Find("ShootHand").GetComponent<Shooting>().canShoot = true;
+                    }
+                    catch (System.NullReferenceException)
+                    {
+                    }
+                }
             }
-            else transform.GetChild(5).gameObject.SetActive(false);
+            else
+            {
+                GetComponent<Animator>().Play("CapsuleClose");
+                isOpen = false;
+
+                if (playerInside)
+                {
+                    try
+                    {
+                        GameObject.Find("ShootHand").GetComponent<Shooting>().canShoot = false;
+                    }
+                    catch (System.NullReferenceException)
+                    {
+                    }
+                    GameObject.Find("Player").GetComponent<Move>().move = false;
+                }
+                else transform.GetChild(5).gameObject.SetActive(false);
+                
+            }
+
+            StartCoroutine(Timer(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
         }
     }
 
 
-
-
-    void Update()
+    IEnumerator Timer(float time)
     {
+        canOpClose = false;
+        yield return new WaitForSeconds(time);
+        canOpClose = true;
+    }
 
+
+    void FixedUpdate()
+    {
+        if (IsConnected)
+        {
+            transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>().enabled = false;
+            transform.GetChild(1).GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else
+        {
+            transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>().enabled = true;
+            transform.GetChild(1).GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        try
+        {
+            if (io[0].connectClient.transform.parent.GetComponent<Generator>().translateEnergy && io[0].connectClient.transform.parent.GetComponent<Generator>().fuel > 0.00001)
+            {
+                transform.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+        }
+        catch (UnassignedReferenceException)
+        {
+            transform.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        catch (System.NullReferenceException)
+        {
+            transform.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 }

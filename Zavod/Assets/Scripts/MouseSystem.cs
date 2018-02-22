@@ -7,6 +7,7 @@ public class MouseSystem : MonoBehaviour
 
     GameObject wire, newWire;
     public LayerMask mask;
+    public LayerMask mechMask;
     [HideInInspector]
     public bool isWireSet = false;
     GameObject CurrentIO;

@@ -9,7 +9,8 @@ public class Move : MonoBehaviour
     Animator animar;
     Rigidbody2D rig;
     public bool flag = true;
-    bool isAttack = false;
+    [HideInInspector]
+    public bool isAttack = false;
     bool inAir = false;
     bool run = true;
     HelpPlayer helpPlayer;
