@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ShopMenu : MonoBehaviour
 {
     public Animator laser, cellAnim;
     public Item[] itemsknife = new Item[3];
     public Item[] itemspist = new Item[3];
+    public List<Item> mech;
     public Transform createZone;
     public Transform Pics, Description, Cost;
     public Transform infoScreen;
@@ -18,9 +20,14 @@ public class ShopMenu : MonoBehaviour
     public bool can = true;
 
 
-    void Start()
+    private void Awake()
     {
         container = Resources.Load<GameObject>("prefabs/container");
+    }
+
+    void Start()
+    {
+       
     }
 
     IEnumerator animate(Item item)
@@ -71,11 +78,70 @@ public class ShopMenu : MonoBehaviour
         {
             Load(itemsknife);
         }
-        else
+        else if (index == 1)
         {
             Load(itemspist);
         }
+        else
+        {            
+            Close();
+            LoadMech();
+            transform.parent.Find("MachineShop").gameObject.SetActive(true);
+        }
 
+    }
+
+    void LoadMech()
+    {
+        Transform ic3 = transform.parent.Find("MachineShop");
+        int indexx = 0;
+        foreach (Item x in mech)
+        {            
+            GameObject img = Instantiate(Resources.Load<GameObject>("prefabs/container"), ic3.Find("Items").GetChild(indexx));
+            img.GetComponent<Image>().sprite = Resources.Load<Sprite>(x.sprite);
+            img.transform.localScale = Vector2.one;
+            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().helpsprefab = x.prefab;
+            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().it = x;
+            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().type = x.type;
+            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().speed = x.speed;
+            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().sprite = x.sprite;
+            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().descr = x.descr;
+            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().cost = x.cost;
+            Button button = ic3.Find("Items").GetChild(indexx).gameObject.AddComponent<Button>();
+            HelperItems itemz = ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>();
+            button.onClick.AddListener(delegate { Buy(itemz); });
+            EventTrigger trig = ic3.Find("Items").GetChild(indexx).GetComponent<EventTrigger>();
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerEnter;
+            entry.callback.AddListener((eventData) => { MachineInfo(ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>()); });
+            trig.triggers.Add(entry);
+
+            indexx++;
+        }
+    }
+
+    public void Close()
+    {
+        try
+        {
+            Load(itemspist);
+        }
+        catch (UnassignedReferenceException)
+        {            
+        }       
+
+        Transform ic3 = transform.parent.Find("MachineShop");
+       
+        for (int i = 0; i < mech.Count; i++)
+        {
+            if (ic3.Find("Items").GetChild(i).childCount > 0)
+            {
+                Destroy(ic3.Find("Items").GetChild(i).GetChild(0).gameObject);
+                Destroy(ic3.Find("Items").GetChild(i).gameObject.GetComponent<Button>());
+            }           
+        }
+
+        ic3.gameObject.SetActive(false);
     }
 
     void Load(Item[] massiv)
@@ -111,5 +177,11 @@ public class ShopMenu : MonoBehaviour
         infoScreen.GetChild(1).GetComponent<Text>().text = (item.speed != 0) ? item.speed.ToString() : "~~~";
         infoScreen.GetChild(2).GetComponent<Text>().text = (item.bullets != 0) ? item.bullets.ToString() : "~~~";
         icon.GetComponent<Image>().sprite = Resources.Load<Sprite>(item.sprite);
+    }
+    public void MachineInfo(HelperItems item) {
+        Transform ic3 = transform.parent.Find("MachineShop");
+        ic3.parent.Find("Description").GetComponent<Text>().text = item.descr;
+        ic3.parent.Find("countCost").GetComponent<Text>().text = item.cost.ToString();
+        ic3.parent.Find("EnPerSec").GetComponent<Text>().text = item.speed.ToString();
     }
 }

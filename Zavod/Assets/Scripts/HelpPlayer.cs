@@ -129,7 +129,7 @@ public class HelpPlayer : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Q))
         {
-            GameObject a = Instantiate(Resources.Load<GameObject>("prefabs/Test/Generator"));
+            GameObject a = Instantiate(Resources.Load<GameObject>("prefabs/Mach/Generator"));
             a.AddComponent<ScrewMachines>();
         }
     }

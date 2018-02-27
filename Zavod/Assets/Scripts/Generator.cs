@@ -38,6 +38,7 @@ public class Generator : Mechanism
                 {
                     mech.EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + mech.EnergyCurrent, 0, mech.EnergyCell);
                     fuel -= Time.deltaTime;
+                    AnimateEngine();
                     print("Client energy  " + mech.EnergyCurrent);
                     print("Current fuel  " + fuel);
                 }
@@ -49,20 +50,23 @@ public class Generator : Mechanism
                     }
                     else
                     {
+                        DontAnimateEngine();
                         stopTranslate = true;
                     }
                 }
             }
             else if (!translateEnergy && !stopTranslate)
             {
-                if (EnergyCurrent < 100)
+                if (EnergyCurrent < EnergyCell)
                 {
                     EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + EnergyCurrent, 0, EnergyCell);
                     fuel -= Time.deltaTime;
+                    AnimateEngine();
                     print("Self energy  " + EnergyCurrent);
                 }
                 else
                 {
+                    DontAnimateEngine();
                     stopTranslate = true;
                 }
             }
@@ -81,8 +85,22 @@ public class Generator : Mechanism
         else
         {
             stopTranslate = false;
+            DontAnimateEngine();
             GetComponent<Animator>().SetBool("On", false);
         }
+    }
+
+    void AnimateEngine()
+    {
+        transform.Find("Fire").gameObject.SetActive(true);
+        transform.Find("Smoke").gameObject.SetActive(true);
+        transform.Find("Energy").gameObject.SetActive(true);
+    }
+    void DontAnimateEngine()
+    {
+        transform.Find("Fire").gameObject.SetActive(false);
+        transform.Find("Smoke").gameObject.SetActive(false);
+        transform.Find("Energy").gameObject.SetActive(false);
     }
 
     void AddFuel(int count)

@@ -270,7 +270,8 @@ public class Inventory : MonoBehaviour
                 {
                     shoot.SetActive(true);
                 }
-                creator.SetActive(false);
+                creator.GetComponent<ShopMenu>().Close();
+                creator.SetActive(false);                
             }
             else if (!creator.activeSelf && Input.GetButtonDown("CraftMenu"))
             {

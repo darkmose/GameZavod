@@ -121,7 +121,7 @@ public class Capsule : Mechanism
                 
             }
 
-            StartCoroutine(Timer(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
+            StartCoroutine(Timer(2));
         }
     }
 
