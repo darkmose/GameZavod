@@ -27,7 +27,7 @@ public class ShopMenu : MonoBehaviour
 
     void Start()
     {
-       
+
     }
 
     IEnumerator animate(Item item)
@@ -83,39 +83,54 @@ public class ShopMenu : MonoBehaviour
             Load(itemspist);
         }
         else
-        {            
+        {
             Close();
             LoadMech();
             transform.parent.Find("MachineShop").gameObject.SetActive(true);
         }
 
     }
+    
 
     void LoadMech()
-    {
+    {   
+        
+        
         Transform ic3 = transform.parent.Find("MachineShop");
         int indexx = 0;
         foreach (Item x in mech)
-        {            
+        {
             GameObject img = Instantiate(Resources.Load<GameObject>("prefabs/container"), ic3.Find("Items").GetChild(indexx));
             img.GetComponent<Image>().sprite = Resources.Load<Sprite>(x.sprite);
             img.transform.localScale = Vector2.one;
-            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().helpsprefab = x.prefab;
-            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().it = x;
-            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().type = x.type;
-            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().speed = x.speed;
-            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().sprite = x.sprite;
-            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().descr = x.descr;
-            ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>().cost = x.cost;
-            Button button = ic3.Find("Items").GetChild(indexx).gameObject.AddComponent<Button>();
-            HelperItems itemz = ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>();
-            button.onClick.AddListener(delegate { Buy(itemz); });
-            EventTrigger trig = ic3.Find("Items").GetChild(indexx).GetComponent<EventTrigger>();
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerEnter;
-            entry.callback.AddListener((eventData) => { MachineInfo(ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>()); });
-            trig.triggers.Add(entry);
+            HelperItems help = ic3.Find("Items").GetChild(indexx).GetComponentInChildren<HelperItems>();
+            help.helpsprefab = x.prefab;
+            help.it = x;
+            help.type = x.type;
+            help.speed = x.speed;
+            help.sprite = x.sprite;
+            help.descr = x.descr;
+            help.cost = x.cost;
+            
 
+            Button button = ic3.Find("Items").GetChild(indexx).gameObject.AddComponent<Button>();
+            button.onClick.AddListener(delegate { Buy(help); });
+
+            EventTrigger trig = ic3.Find("Items").GetChild(indexx).GetComponent<EventTrigger>();
+            EventTrigger.TriggerEvent tr = new EventTrigger.TriggerEvent();
+
+            tr.AddListener((eventData) => 
+            {
+                //ic3.parent.Find("ItemCreator").GetComponent<ShopMenu>().MachineInfo(help);
+                MachineInfo(help);
+            });
+
+            EventTrigger.Entry en = new EventTrigger.Entry();
+            en.callback = tr;
+            en.eventID = EventTriggerType.PointerEnter;
+
+            trig.triggers.Add(en);
+            
             indexx++;
         }
     }
@@ -140,7 +155,7 @@ public class ShopMenu : MonoBehaviour
                 Destroy(ic3.Find("Items").GetChild(i).gameObject.GetComponent<Button>());
             }           
         }
-
+        PlayerPrefs.SetInt("ShopIndex", 1);
         ic3.gameObject.SetActive(false);
     }
 
@@ -180,8 +195,8 @@ public class ShopMenu : MonoBehaviour
     }
     public void MachineInfo(HelperItems item) {
         Transform ic3 = transform.parent.Find("MachineShop");
-        ic3.parent.Find("Description").GetComponent<Text>().text = item.descr;
-        ic3.parent.Find("countCost").GetComponent<Text>().text = item.cost.ToString();
-        ic3.parent.Find("EnPerSec").GetComponent<Text>().text = item.speed.ToString();
+        ic3.Find("Descr").GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = item.descr;
+        ic3.Find("Cost").GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = item.cost.ToString();
+        ic3.Find("Energy").GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = item.speed.ToString();
     }
 }

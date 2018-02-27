@@ -12,13 +12,14 @@ public class Capsule : Mechanism
 
     void Start()
     {
-        InputCount = 8;
+        InputCount = 6;
         io = new InputIO[InputCount];
         Type = "Capsule";
         EnergyCell = 10000f;
         EnergyCurrent = 0;
         io[0] = transform.GetChild(0).GetComponent<InputIO>();
-        IsConnected = false;
+
+        IsConnected=true;
 
         #region PlayerPrefs---PlayerInCapsule
         if (PlayerPrefs.HasKey("CapsulePlayerState"))
