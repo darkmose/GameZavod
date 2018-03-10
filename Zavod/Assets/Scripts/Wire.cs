@@ -28,7 +28,6 @@ public class Wire : MonoBehaviour
         line.SetPosition(0, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition));
         line.positionCount++;
         line.enabled = true;
-
     }
 
     public void StopWire()
@@ -49,6 +48,7 @@ public class Wire : MonoBehaviour
         line.endColor = Color.white;
 
         this.gameObject.isStatic = true;
+        Destroy(gameObject.GetComponent<Wire>());
     }
 
 
@@ -71,10 +71,5 @@ public class Wire : MonoBehaviour
                 GameObject.Find("Main Camera").GetComponent<MouseSystem>().isWireSet = false;
             }
         }
-    }
-
-    void FixedUpdate()
-    {
-               
     }
 }

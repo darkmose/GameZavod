@@ -4,65 +4,54 @@ using UnityEngine;
 
 public class Generator : Mechanism
 {
+
     public float energPerFrame = 1f;
-    InputIO input;
+    [HideInInspector]
+    public InputIO input;
+    [HideInInspector]
+    public Mechanism mech;
+
+    [HideInInspector]
     public bool translateEnergy = true;
+    [HideInInspector]
     public bool stopTranslate = true;
     public float fuel = 0f;
 
-    Mechanism mech;
+
 
     void Start()
     {
         EnergyCell = 100f;
         EnergyCurrent = 0;
         Type = "Generator";
-        InputCount = 2;
+        InputCount = 1;
         AlignObjects = new GameObject[InputCount];
-        AlignObjects[0] = transform.GetChild(0).gameObject;
+        AlignObjects[0] = transform.Find("Input").gameObject;
         input = AlignObjects[0].GetComponent<InputIO>();
         IsConnected = false;
+        transform.Find("Fire").gameObject.SetActive(false);
+        transform.Find("Smoke").gameObject.SetActive(false);
+        transform.Find("Energy").gameObject.SetActive(false);
     }
 
-
-    void EnergyOut()
+    void EnergyOutHelper()
     {
-        if (IsConnected && fuel > 0.00001f && input.connectClient.transform.parent.gameObject.name == "Capsule")
+        GetComponent<Animator>().SetBool("On", true);
+        if (translateEnergy && !stopTranslate)
         {
-            GetComponent<Animator>().SetBool("On", true);
-            if (translateEnergy && !stopTranslate)
-            {
-                mech = input.connectClient.transform.parent.GetComponent<Mechanism>();
+            mech = input.connectClient[0].transform.parent.GetComponent<Mechanism>();          
 
-                if (mech.EnergyCurrent < mech.EnergyCell)
-                {
-                    mech.EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + mech.EnergyCurrent, 0, mech.EnergyCell);
-                    fuel -= Time.deltaTime;
-                    AnimateEngine();
-                    print("Client energy  " + mech.EnergyCurrent);
-                    print("Current fuel  " + fuel);
-                }
-                else
-                {
-                    if (EnergyCurrent < EnergyCell)
-                    {
-                        translateEnergy = false;
-                    }
-                    else
-                    {
-                        DontAnimateEngine();
-                        stopTranslate = true;
-                    }
-                }
+            if (mech.EnergyCurrent < mech.EnergyCell)
+            {
+                mech.EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + mech.EnergyCurrent, 0, mech.EnergyCell);
+                fuel -= Time.deltaTime;
+                AnimateEngine();
             }
-            else if (!translateEnergy && !stopTranslate)
+            else
             {
                 if (EnergyCurrent < EnergyCell)
                 {
-                    EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + EnergyCurrent, 0, EnergyCell);
-                    fuel -= Time.deltaTime;
-                    AnimateEngine();
-                    print("Self energy  " + EnergyCurrent);
+                    translateEnergy = false;
                 }
                 else
                 {
@@ -70,24 +59,46 @@ public class Generator : Mechanism
                     stopTranslate = true;
                 }
             }
-
+        }
+        else if (!translateEnergy && !stopTranslate)
+        {
             if (EnergyCurrent < EnergyCell)
             {
-                stopTranslate = false;
-                translateEnergy = false;
+                EnergyCurrent = Mathf.Clamp(energPerFrame * Time.deltaTime + EnergyCurrent, 0, EnergyCell);
+                fuel -= Time.deltaTime;
+                AnimateEngine();
             }
-            if (mech.EnergyCurrent < mech.EnergyCell)
+            else
             {
-                stopTranslate = false;
-                translateEnergy = true;
+                DontAnimateEngine();
+                stopTranslate = true;
             }
         }
-        else
+
+        if (EnergyCurrent < EnergyCell)
         {
             stopTranslate = false;
-            DontAnimateEngine();
-            GetComponent<Animator>().SetBool("On", false);
+            translateEnergy = false;
         }
+        if (mech.EnergyCurrent < mech.EnergyCell)
+        {
+            stopTranslate = false;
+            translateEnergy = true;
+        }
+    }
+
+    void EnergyOut()
+    {
+            if (IsConnected && fuel > 0.00001f && input.connectClient[0].transform.parent.gameObject.name == "Capsule")
+            {
+                EnergyOutHelper();
+            }
+            else
+            {
+                stopTranslate = false;
+                DontAnimateEngine();
+                GetComponent<Animator>().SetBool("On", false);
+            }      
     }
 
     void AnimateEngine()

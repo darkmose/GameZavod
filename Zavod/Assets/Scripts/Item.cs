@@ -27,7 +27,7 @@ public class Item : MonoBehaviour
     public Rigidbody2D rigi;
     GameObject sprite1;
 	void Start () {
-        if (gameObject.layer != 13)
+        if (gameObject.layer != 13 && gameObject.tag != "Mech")
         {
             if (gameObject.tag != "Item") gameObject.tag = "Item";
             if (gameObject.layer != 8) gameObject.layer = 8;

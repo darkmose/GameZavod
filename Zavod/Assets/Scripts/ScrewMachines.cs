@@ -50,6 +50,7 @@ public class ScrewMachines : MonoBehaviour
         else if (Input.GetMouseButtonUp(1) || Input.GetButtonUp("Inventory") || Input.GetButtonDown("CraftMenu"))
         {
             Destroy(gameObject);
+            GameObject.Find("GlobalScripts").GetComponent<Inventory>().items.Add(gameObject.GetComponent<Item>());
         }
     }
 
@@ -57,7 +58,7 @@ public class ScrewMachines : MonoBehaviour
     {
         Vector2 size = GetComponent<BoxCollider2D>().size;
         otherObjects = Physics2D.OverlapBoxAll(transform.position,size,0,GameObject.Find("Main Camera").GetComponent<MouseSystem>().mechMask);
-        if (otherObjects.Length <= 3 && transform.GetChild(1).position.y >= 13.5f && transform.GetChild(1).position.y <=13.8f)
+        if (otherObjects.Length <= 3 && transform.Find("check").position.y >= 13.5f && transform.Find("check").position.y <= 13.8f)
         {
             GetComponent<SpriteRenderer>().color = green;
             canPlace = true;
@@ -67,7 +68,6 @@ public class ScrewMachines : MonoBehaviour
             GetComponent<SpriteRenderer>().color = red;
             canPlace = false;
         }
-        print(otherObjects.Length);
     }
 
     void Update()

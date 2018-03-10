@@ -19,7 +19,7 @@ public class Capsule : Mechanism
         EnergyCurrent = 0;
         io[0] = transform.GetChild(0).GetComponent<InputIO>();
 
-        IsConnected=true;
+        IsConnected=false;
 
         #region PlayerPrefs---PlayerInCapsule
         if (PlayerPrefs.HasKey("CapsulePlayerState"))
@@ -56,7 +56,7 @@ public class Capsule : Mechanism
             transform.GetChild(5).gameObject.SetActive(true);
         }
 
-
+        StartCoroutine(check());
 
         if (isOpen)
         {
@@ -134,6 +134,40 @@ public class Capsule : Mechanism
         canOpClose = true;
     }
 
+    IEnumerator check()
+    {
+        for (; ; )
+        {
+            try
+            {
+                for (int i = 0; i < io[0].connects; i++)
+                {
+                    try
+                    {
+                        if (io[0].connectClient[i].transform.parent.GetComponent<Generator>().translateEnergy && io[0].connectClient[i].transform.parent.GetComponent<Generator>().fuel > 0.00001)
+                        {
+                            transform.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                        }
+                    }
+                    catch (UnassignedReferenceException)
+                    {
+                        transform.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    }
+                    catch (System.NullReferenceException)
+                    {
+                        transform.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    }
+
+                }
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+            }
+            
+            yield return new WaitForSeconds(1);
+        }
+    }
+
 
     void FixedUpdate()
     {
@@ -146,21 +180,6 @@ public class Capsule : Mechanism
         {
             transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>().enabled = true;
             transform.GetChild(1).GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-        }
-        try
-        {
-            if (io[0].connectClient.transform.parent.GetComponent<Generator>().translateEnergy && io[0].connectClient.transform.parent.GetComponent<Generator>().fuel > 0.00001)
-            {
-                transform.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = true;
-            }
-        }
-        catch (UnassignedReferenceException)
-        {
-            transform.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        catch (System.NullReferenceException)
-        {
-            transform.GetChild(1).GetChild(2).gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }

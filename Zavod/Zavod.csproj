@@ -337,6 +337,7 @@
     <Compile Include="Assets\Scripts\ShopMenu.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\Trigger_0.cs" />
+    <Compile Include="Assets\Scripts\WindmillGenerator.cs" />
     <Compile Include="Assets\Scripts\Wire.cs" />
     <Compile Include="Assets\Scripts\World.cs" />
   </ItemGroup>

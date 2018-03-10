@@ -119,18 +119,13 @@ public class ShopMenu : MonoBehaviour
             EventTrigger trig = ic3.Find("Items").GetChild(indexx).GetComponent<EventTrigger>();
             EventTrigger.TriggerEvent tr = new EventTrigger.TriggerEvent();
 
-            tr.AddListener((eventData) => 
-            {
-                //ic3.parent.Find("ItemCreator").GetComponent<ShopMenu>().MachineInfo(help);
-                MachineInfo(help);
-            });
+            tr.AddListener((eventData) => MachineInfo(help));
 
             EventTrigger.Entry en = new EventTrigger.Entry();
             en.callback = tr;
             en.eventID = EventTriggerType.PointerEnter;
 
-            trig.triggers.Add(en);
-            
+            trig.triggers.Add(en);            
             indexx++;
         }
     }

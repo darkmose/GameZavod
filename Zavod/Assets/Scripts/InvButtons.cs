@@ -42,7 +42,7 @@ public class InvButtons : MonoBehaviour {
     {
         if (cell.transform.parent == inventorrrrry.getInvTransform())
         {
-            menuname[0] = "Equip";
+            menuname[0] = "Use";
             menuname[1] = "Throw Out";
         }
         else
@@ -150,7 +150,7 @@ public class InvButtons : MonoBehaviour {
     {
         if (cell.GetComponentInChildren<HelperItems>().type == "hands" || cell.GetComponentInChildren<HelperItems>().type == "instrument")
         {
-            HandHelper(cell.GetComponentInChildren<HelperItems>().sprite,cell.GetComponentInChildren<HelperItems>());
+            HandHelper(cell.GetComponentInChildren<HelperItems>().sprite, cell.GetComponentInChildren<HelperItems>());
             InCellArmorHelper(5);
 
             if (inventorrrrry.armor[4].GunDamage != 0)
@@ -165,12 +165,12 @@ public class InvButtons : MonoBehaviour {
                 player.damage = 5 + cell.GetComponentInChildren<HelperItems>().damage;
                 dmg.text = player.damage.ToString();
                 inventorrrrry.isShooting = false;
-                player.transform.GetChild(0).GetComponent<CapsuleCollider2D>().size = new Vector2(colliderXradius + cell.GetComponentInChildren<HelperItems>().handRadius,2.11f);
+                player.transform.GetChild(0).GetComponent<CapsuleCollider2D>().size = new Vector2(colliderXradius + cell.GetComponentInChildren<HelperItems>().handRadius, 2.11f);
             }
 
 
-          inventorrrrry.HelperInvOpen();
-          inventorrrrry.HelperArmorOpen();
+            inventorrrrry.HelperInvOpen();
+            inventorrrrry.HelperArmorOpen();
         }
         else if (cell.GetComponentInChildren<HelperItems>().type == "legs")
         {
@@ -179,6 +179,18 @@ public class InvButtons : MonoBehaviour {
         else if (cell.GetComponentInChildren<HelperItems>().type == "head")
         {
             InCellArmorHelper(1);
+        }
+        else if (cell.GetComponentInChildren<HelperItems>().type == "Machines")
+        {
+            inventorrrrry.HelperArmorClose();
+            inventorrrrry.HelperInvClose();
+            Destroy(popap);
+            isEvent = false;
+
+            GameObject.Find("Player").GetComponent<Move>().move = true;
+            GameObject a = Instantiate(Resources.Load<GameObject>(cell.GetComponentInChildren<HelperItems>().helpsprefab));
+            a.AddComponent<ScrewMachines>();
+            inventorrrrry.items.Remove(cell.GetComponentInChildren<HelperItems>().it);
         }
     }
     void UnEquip() {
@@ -221,7 +233,7 @@ public class InvButtons : MonoBehaviour {
 
     public void PopupAd()
     {
-        if (cell.transform.childCount > 0 && !isEvent)
+        if (cell.transform.childCount > 0 && !isEvent && cell.GetComponentInChildren<HelperItems>().type != "NotUse") 
         {
             SetMenuName();
             isEndAnimButton = false;

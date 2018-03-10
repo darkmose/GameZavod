@@ -7,16 +7,19 @@ public class InputIO : MonoBehaviour {
     [HideInInspector]
     public int connects;
     [HideInInspector]
-    public GameObject connectClient;
+    public List<GameObject> connectClient;
     [HideInInspector]
-    public GameObject WireRef;
+    public List<GameObject> WireRef;
     
 
-    void Start () {
+    void Start ()
+    {
+        connectClient = new List<GameObject>();
+        WireRef = new List<GameObject>();
         connects = 0;
 	}
     
-    void Delete()
+    public void Delete()
     {
         try
         {
@@ -26,15 +29,16 @@ public class InputIO : MonoBehaviour {
 
                 if (hit2d.collider.gameObject == this.gameObject)
                 {
-                    if (WireRef.isStatic)
+                    if (WireRef[connects - 1].isStatic && GameObject.Find("GlobalScripts").GetComponent<Inventory>().items.Count < 9 && connects > 0)
                     {
-                        Destroy(WireRef);
-                        connectClient.transform.parent.GetComponent<Mechanism>().IsConnected = false;
-                        connectClient.GetComponent<InputIO>().connects = 0;
-                        connectClient.GetComponent<InputIO>().connectClient = null;
-                        transform.parent.GetComponent<Mechanism>().IsConnected = false;
-                        connects = 0;
-                        connectClient = null;
+                            Destroy(WireRef[connects - 1]);
+                            connectClient[connects - 1].transform.parent.GetComponent<Mechanism>().IsConnected = false;
+                            connectClient[connects - 1].GetComponent<InputIO>().connectClient.Remove(transform.Find("Input").gameObject);
+                            connectClient[connects - 1].GetComponent<InputIO>().connects--;
+                            transform.parent.GetComponent<Mechanism>().IsConnected = false;
+                            connectClient.Remove(connectClient[connects-1].transform.Find("Input").gameObject);
+                            connects--;                          
+                            GameObject.Find("GlobalScripts").GetComponent<Inventory>().items.Add(Resources.Load<GameObject>("prefabs/Mach/WireItem").GetComponent<Item>());  
                     }
                 }
             }

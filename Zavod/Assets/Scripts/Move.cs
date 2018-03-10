@@ -118,7 +118,7 @@ public class Move : MonoBehaviour
     {
         if (Input.GetButton("Horizontal") && move)
         {
-            if (Input.GetKey(KeyCode.LeftShift) && Time.timeScale > 0f && (Input.GetAxisRaw("Horizontal") < 0 || Input.GetAxisRaw("Horizontal") > 0))
+            if (Input.GetButton("Run") && Time.timeScale > 0f && (Input.GetAxisRaw("Horizontal") < 0 || Input.GetAxisRaw("Horizontal") > 0))
             {
                 if (helpPlayer.energy > 5 && run)
                 {

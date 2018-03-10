@@ -126,12 +126,6 @@ public class HelpPlayer : MonoBehaviour
                 GameObject.Find("GlobalScripts").GetComponent<Inventory>().healthPlus.text = GameObject.Find("GlobalScripts").GetComponent<Inventory>().healthPl.ToString();
             }
         }
-
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            GameObject a = Instantiate(Resources.Load<GameObject>("prefabs/Mach/Generator"));
-            a.AddComponent<ScrewMachines>();
-        }
     }
 
     private void FixedUpdate()
